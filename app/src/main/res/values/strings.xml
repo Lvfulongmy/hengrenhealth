@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">恒瑞健康</string>
+    <string name="guide_start">开始体验</string>
+    <!--<drawable name="btn_normal">#FF8C00</drawable>-->
+    <!--<drawable name="btn_pressed">#FFD39B</drawable>-->
+    <string name="cancle">取消</string>
+    <string name="title">请选择时间</string>
+    <string name="commit">确定</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hour">时</string>
+    <string name="minute">分</string>
+
+    <string name="picker_name">日期选择控件</string>
+    <string name="select_date">选择日期</string>
+    <string name="current_date">当前日期</string>
+    <string name="select_time">选择时间</string>
+    <string name="current_time">当前时间</string>
+</resources>
