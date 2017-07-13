@@ -1,6 +1,5 @@
 package com.hengrunjiankang.health.activity;
 
-import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -8,10 +7,6 @@ import android.widget.Toast;
 
 import com.hengrunjiankang.health.R;
 import com.hengrunjiankang.health.http.CommonHttpCallback;
-import com.hengrunjiankang.health.http.CommonHttpPostRequest;
-import com.hengrunjiankang.health.http.UrlObject;
-
-import org.apache.http.impl.io.ContentLengthInputStream;
 
 import java.util.HashMap;
 
