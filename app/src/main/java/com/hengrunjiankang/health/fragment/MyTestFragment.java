@@ -1,7 +1,5 @@
-package com.hengrunjiankang.health.activity;
+package com.hengrunjiankang.health.fragment;
 
-import android.content.SharedPreferences;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,28 +11,28 @@ import com.hengrunjiankang.health.widget.MyView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Random;
 
 /**
- * Created by Administrator on 2017/7/12.
+ * Created by Administrator on 2017/7/13.
  */
 
-public class TestCellActivity extends BaseActivity {
+public class MyTestFragment extends BaseFragment {
     private TextView change;
     private MyView cellView;
-    private ViewPager pager;
-   private  YTextData yTextData=new YTextData();
+    public static int mode;
+    YTextData yTextData=new YTextData();
+
     @Override
     protected int setLayout() {
-        return R.layout.activity_main;
+        return R.layout.layout_cellview;
     }
 
     @Override
-    protected void findView() {
-        change=(TextView)findViewById(R.id.change);
-//        cellView=(MyView)findViewById(R.id.cell);
-        initTest(MyView.DAY,System.currentTimeMillis());
+    protected void findView(View view) {
+        change=(TextView)view.findViewById(R.id.change);
+        cellView=(MyView)view.findViewById(R.id.cellview);
+        initTest(mode,System.currentTimeMillis());
         ArrayList<String> yTextList=new ArrayList<String>();
         for (int i = 100; i > 0; i -= 10) {
             yTextList.add(i + "%");
@@ -46,6 +44,7 @@ public class TestCellActivity extends BaseActivity {
     }
     private void initTest(int mode, long starttime){
         Calendar cl=Calendar.getInstance();
+        cl.setTimeInMillis(starttime);
         cl.set(Calendar.HOUR_OF_DAY, 0);
         cl.set(Calendar.MINUTE, 0);
         cl.set(Calendar.SECOND, 0);
@@ -77,9 +76,10 @@ public class TestCellActivity extends BaseActivity {
             case MyView.MONTH:
                 for(int i=0;i<30;i++){
                     PointData pointData=new PointData();
-                    pointData.setDate(cl.getTimeInMillis()+(i*60*60*1000*24));
+                    pointData.setDate(cl.getTimeInMillis());
                     pointData.setIndex(new Random().nextInt(100));
                     pointDatas.add(pointData);
+                    cl.setTimeInMillis(cl.getTimeInMillis()+60*60*1000*24);
                 }
                 break;
 
@@ -89,7 +89,7 @@ public class TestCellActivity extends BaseActivity {
 
     @Override
     protected void createObject() {
-
+        count=mode;
     }
 
     @Override
@@ -102,17 +102,16 @@ public class TestCellActivity extends BaseActivity {
 
 
     }
-
+    public void splash(long time){
+        if(cellView!=null) {
+            initTest(mode, time);
+            cellView.setMode(mode, time,yTextData);
+            cellView.invalidate();
+        }
+    }
     int count;
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.change:
-                int i=count++%3;
-                initTest(i,System.currentTimeMillis());
-                 cellView.setMode(i,System.currentTimeMillis(),yTextData);
-                cellView.invalidate();
-                break;
-        }
+
     }
 }

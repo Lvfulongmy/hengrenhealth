@@ -4,17 +4,28 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="background">#FFFFFF</color>
-    <color name="split_line">#11112233</color>
-    <color name="text1">#59B29C</color>
-    <color name="text2">#333333</color>
-    <color name="orange">#FF8C00</color>
+    <color name="white">#FFFFFF</color>
 
-    <color name="color1">#F0F0F0</color>
-    <color name="color2">#FFFFFF</color>
-    <color name="color3">#B0B0B0</color>
-    <color name="color4">#666666</color>
-    <color name="color5">#57C5E8</color>
-    <color name="color6">#ff6d33</color>
+    <color name="green">#59B29C</color>
+    <color name="black">#333333</color>
+    <color name="orange1">#FF8C00</color>
 
+    <color name="gray0">#F0F0F0</color>
+    <color name="gray2">#B0B0B0</color>
+    <color name="gray3">#666666</color>
+    <color name="blue">#57C5E8</color>
+    <color name="orange2">#ff6d33</color>
+    <color name="shadow">#11112233</color>
+
+    <color name="tab_select">#ffa627</color>
+
+    <color name="tab_normal">#eaeaea</color>
+
+    <color name="tab_bg_normal">#ffffff</color>
+
+    <color name="tab_bg_press">#ffffff</color>
+
+    <color name="transparent_white">#ddffffff</color>
+
+    <color name="transparent_orange">#ddff9933</color>
 </resources>

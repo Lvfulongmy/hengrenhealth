@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 用于tab indicator控件的背景 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:state_pressed="true" android:state_checked="true">
+        
+          <layer-list >
+           <item >
+               <shape android:shape="rectangle">
+                   <solid android:color="@color/tab_select"/><!-- 选中情况下电击后下划线颜色 -->
+               </shape>
+           </item>
+           <item android:bottom="@dimen/tab_press">
+               <shape android:shape="rectangle">
+                   <solid android:color="@color/tab_bg_press"/><!-- 选中情况下点击后颜色 -->
+               </shape>
+           </item>
+        </layer-list>
+        
+    </item>
+    <item android:state_pressed="true" android:state_checked="false">
+        <layer-list >
+           <item >
+               <shape android:shape="rectangle">
+                   <solid android:color="@color/tab_normal"/><!--未选中电击后下划线颜色 -->
+               </shape>
+           </item>
+           <item android:bottom="@dimen/tab_unpress">
+               <shape android:shape="rectangle">
+                   <solid android:color="@color/tab_bg_press"/><!--未选中点击后颜色 -->
+               </shape>
+           </item>
+        </layer-list>
+    </item>
+    <item android:state_checked="true" android:state_pressed="false">
+         <layer-list >
+           <item >
+               <shape android:shape="rectangle">
+                   <solid android:color="@color/tab_select"/><!-- 选择后下划线颜色 -->
+               </shape>
+           </item>
+           <item android:bottom="@dimen/tab_press">
+               <shape android:shape="rectangle">
+                   <solid android:color="@color/tab_bg_normal"/><!-- 选择后下划线颜色 -->
+               </shape>
+           </item>
+        </layer-list>
+    </item>
+    <item >
+         <layer-list >
+           <item >
+               <shape android:shape="rectangle">
+                   <solid android:color="@color/tab_normal"/><!-- 点击前下划线颜色 -->
+               </shape>
+           </item>
+           <item android:bottom="@dimen/tab_unpress">
+               <shape android:shape="rectangle">
+                   <solid android:color="@color/tab_bg_normal"/><!-- 点击前颜色 -->
+               </shape>
+           </item>
+        </layer-list>
+    </item>
+
+</selector>
+

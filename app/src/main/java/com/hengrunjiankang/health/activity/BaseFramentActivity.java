@@ -2,27 +2,20 @@ package com.hengrunjiankang.health.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.support.v4.app.FragmentActivity;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hengrunjiankang.health.R;
-
-import java.util.HashMap;
 
 /**
  * activity 的基类
  *
  * @author YuXiu 2016-7-14
  */
-public abstract class BaseActivity extends Activity implements OnClickListener {
+public abstract class BaseFramentActivity extends FragmentActivity implements OnClickListener {
     protected AlertDialog progressDialog;
     protected Intent intent;
 
@@ -66,6 +59,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
     abstract protected void getData();
 
 
+
     @Override
     protected void onDestroy() {
         // TODO Auto-generated method stub
@@ -75,5 +69,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
         ((TextView) findViewById(R.id.title_text)).setText(str);
         findViewById(R.id.title_back).setOnClickListener(this);
     }
+
 
 }

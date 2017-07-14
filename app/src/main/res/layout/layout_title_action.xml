@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="50"
+    android:background="@color/white" >
+
+    <ImageButton
+        android:id="@+id/title_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/back"
+        android:background="@color/white"/>
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_right"
+        android:background="@drawable/gray_stroke"
+        android:layout_alignParentRight="true"
+        android:text="@string/select_record"
+        android:drawableRight="@mipmap/small_mark"
+        android:textColor="@color/gray3"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        />
+
+</RelativeLayout>

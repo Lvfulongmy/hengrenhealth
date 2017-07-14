@@ -29,7 +29,7 @@ public class CustomDatePicker {
      * 定义结果回调接口
      */
     public interface ResultHandler {
-        void handle(String time);
+        void handle(long time);
     }
 
     public enum SCROLL_TYPE {
@@ -63,24 +63,26 @@ public class CustomDatePicker {
     private Calendar selectedCalender, startCalendar, endCalendar;
     private TextView tv_cancle, tv_select, hour_text, minute_text;
 
-    public CustomDatePicker(Context context, ResultHandler resultHandler, String startDate, String endDate) {
-        if (isValidDate(startDate, "yyyy-MM-dd HH:mm") && isValidDate(endDate, "yyyy-MM-dd HH:mm")) {
+    public CustomDatePicker(Context context, ResultHandler resultHandler, long startDate, long endDate) {
+//        if (isValidDate(startDate, "yyyy-MM-dd HH:mm") && isValidDate(endDate, "yyyy-MM-dd HH:mm")) {
             canAccess = true;
             this.context = context;
             this.handler = resultHandler;
             selectedCalender = Calendar.getInstance();
             startCalendar = Calendar.getInstance();
             endCalendar = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
-            try {
-                startCalendar.setTime(sdf.parse(startDate));
-                endCalendar.setTime(sdf.parse(endDate));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+//            try {
+//                startCalendar.setTime(sdf.parse(startDate));
+//                endCalendar.setTime(sdf.parse(endDate));
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+            startCalendar.setTimeInMillis(startDate);
+            endCalendar.setTimeInMillis(endDate);
             initDialog();
             initView();
-        }
+//        }
     }
 
     private void initDialog() {
@@ -121,8 +123,8 @@ public class CustomDatePicker {
         tv_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
-                handler.handle(sdf.format(selectedCalender.getTime()));
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+                handler.handle(selectedCalender.getTimeInMillis());
                 datePickerDialog.dismiss();
             }
         });

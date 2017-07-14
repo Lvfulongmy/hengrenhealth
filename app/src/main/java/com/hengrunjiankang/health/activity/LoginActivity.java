@@ -6,8 +6,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hengrunjiankang.health.R;
-import com.hengrunjiankang.health.http.CommonHttpCallback;
+import com.hengrunjiankang.health.okhttp.CommonHttp;
+import com.hengrunjiankang.health.okhttp.CommonHttpCallback;
 
+import java.io.InputStream;
 import java.util.HashMap;
 
 /**
@@ -76,34 +78,27 @@ public class LoginActivity extends BaseActivity {
         HashMap<String,String > params=new HashMap<>();
         params.put("MobileNumber",etUsername.getText().toString());
         params.put("Password",etPwd.getText().toString());
+        new CommonHttp(new CommonHttpCallback() {
+            @Override
+            public void requestSeccess(String json) {
 
-//        new CommonHttpPostRequest(new CommonHttpCallback() {
-//            @Override
-//            public void requestSeccess(String json) {
-//
-//                SharedPreferences sPreferences = getBaseContext().getSharedPreferences("UserInfo", MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sPreferences.edit();
-//                //当然sharepreference会对一些特殊的字符进行转义，使得读取的时候更加准确
-////                editor.putString("username", username);
-////                editor.putString("password", password);
-//                editor.putString("cookie", json);
-//                editor.putBoolean("islog", true);
-//                editor.commit();
-//
-//            }
-//
-//            @Override
-//            public void requestFail(String msg) {
-//
-//            }
-//
-//            @Override
-//            public void requestAbnormal(int code) {
-//
-//            }
-//        },null).execute(UrlObject.LOGINURL,params);
+            }
 
+            @Override
+            public void requestFail(String msg) {
 
+            }
+
+            @Override
+            public void requestAbnormal(int code) {
+
+            }
+
+            @Override
+            public void requestFile(InputStream stream) {
+
+            }
+        },false).doRequest("",params);
     }
 
 }

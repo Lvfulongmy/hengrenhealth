@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="txt_title">25dp</dimen>
+    <dimen name="tab_unpress">0dp</dimen>
+    <!-- tab indicator未被选中状态 -->
+    <dimen name="tab_press">3dp</dimen>
+</resources>

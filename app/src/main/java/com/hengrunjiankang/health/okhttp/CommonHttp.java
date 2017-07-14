@@ -23,11 +23,10 @@ import okhttp3.Response;
 
 public class CommonHttp {
     private CommonHttpCallback callback;
-    private HashMap<String,String> headerMap;
+    public static String cookie;
     private boolean isfile=false;
-    public CommonHttp(CommonHttpCallback callback, HashMap<String,String> header,boolean isfile){
+    public CommonHttp(CommonHttpCallback callback,boolean isfile){
         this.callback=callback;
-        this.headerMap=header;
         this.isfile=isfile;
     }
     public void doRequest(Object... objects) {
@@ -36,9 +35,8 @@ public class CommonHttp {
         HashMap<String, File> files;
         Request request=null;
         Request.Builder requestBuiler = new Request.Builder();
-        if(headerMap!=null){
-            Headers headers=Headers.of(headerMap);
-            requestBuiler.headers(headers);
+        if(cookie!=null&&!cookie.equals("")){
+            requestBuiler.header("Cookie",cookie);
         }
 
         switch (objects.length) {
@@ -88,7 +86,7 @@ public class CommonHttp {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
+                cookie=response.header("Set-Cookie","").toString();
                 if(response.code()==200){
                     if (isfile) {
                         callback.requestFile(response.body().byteStream());

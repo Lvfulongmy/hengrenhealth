@@ -10,13 +10,20 @@ import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.hengrunjiankang.health.entity.LineData;
+import com.hengrunjiankang.health.entity.PointData;
+import com.hengrunjiankang.health.entity.YTextData;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 /**
  * Created by 56574 on 2017/6/1.
@@ -38,9 +45,9 @@ public class MyView extends View {
     private ArrayList<LineData> lineDataList;
     private ArrayList<String> xTextList;
     private ArrayList<String> yTextList;
-    private int textColorId = -1;
-    private int lineColorId = -1;
-    private int axisColorId = -1;
+    private int textColorId = -1;//文字颜色
+    private int lineColorId = -1;//辅助线颜色
+    private int axisColorId = -1;//坐标轴颜色
 
     public static int getMode() {
         return mode;
@@ -54,37 +61,67 @@ public class MyView extends View {
         this.lineDataList = lineData;
     }
 
-    public void setMode(int mode, long starttime) {
+    public float getXleftoffset() {
+        return xleftoffset;
+    }
+
+    public void setXleftoffset(float xleftoffset) {
+        this.xleftoffset = xleftoffset;
+    }
+
+    public float getXrightoffset() {
+        return xrightoffset;
+    }
+
+    public void setXrightoffset(float xrightoffset) {
+        this.xrightoffset = xrightoffset;
+    }
+
+    public float getYtopoffset() {
+        return ytopoffset;
+    }
+
+    public void setYtopoffset(float ytopoffset) {
+        this.ytopoffset = ytopoffset;
+    }
+
+    public float getYbottomoffset() {
+        return ybottomoffset;
+    }
+
+    public void setYbottomoffset(float ybottomoffset) {
+        this.ybottomoffset = ybottomoffset;
+    }
+
+    public void setMode(int mode, long starttime, YTextData yTextData) {
         this.mode = mode;
         this.starttime = starttime;
         yStep = 100;
-        yTextStep = 10;
-        yTextList = new ArrayList<>();
-        for (int i = 100; i > 0; i -= 10) {
-            yTextList.add(i + "%");
-        }
+        yTextStep = yTextData.getYstep();
+        yTextList = yTextData.getYtextlist();
         Calendar cl = Calendar.getInstance();
         cl.setTimeInMillis(starttime);
         cl.set(Calendar.HOUR_OF_DAY, 0);
         cl.set(Calendar.MINUTE, 0);
         cl.set(Calendar.SECOND, 0);
         cl.set(Calendar.MILLISECOND, 0);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("MM月dd日");
 
         xTextList = new ArrayList<>();
         switch (mode) {
             case DAY:
                 xStep = 24;
-                xTextStep = 6;
-                for (int i = 0; i < xTextStep; i++) {
-                    xTextList.add(((i + 1) * 4) + "h");
+                xTextStep = 7;
+                for (int i = 0; i <=xTextStep; i++) {
+                    xTextList.add((i * 4) + "h");
                 }
                 break;
             case WEEK:
                 xStep = 7;
                 xTextStep = 7;
-                for (int i = 0; i < 7; i++) {
-                    long time = cl.getTimeInMillis() + 24 * 60 * 60 * 1000;
+                xTextList.add(format.format(cl.getTime()));
+                for (int i = 0; i <xTextStep-1; i++) {
+                    long time = cl.getTimeInMillis() + (24 * 60 * 60 * 1000);
                     cl.clear();
                     cl.setTimeInMillis(time);
                     xTextList.add(format.format(cl.getTime()));
@@ -94,8 +131,9 @@ public class MyView extends View {
                 xStep = 30;
                 xTextStep = 6;
                 xTextList = new ArrayList<>();
-                for (int i = 0; i < 30; i++) {
-                    long time = cl.getTimeInMillis() + 24 * 60 * 60 * 1000 * 6;
+                xTextList.add(format.format(cl.getTime()));
+                for (int i = 0; i <xTextStep-1; i++) {
+                    long time = cl.getTimeInMillis() +(24 * 60 * 60 * 1000 * 6);
                     cl.clear();
                     cl.setTimeInMillis(time);
                     xTextList.add(format.format(cl.getTime()));
@@ -111,7 +149,6 @@ public class MyView extends View {
         cl.set(Calendar.MINUTE, 0);
         cl.set(Calendar.SECOND, 0);
         cl.set(Calendar.MILLISECOND, 0);
-        long startTime = cl.getTimeInMillis();
         switch (mode) {
             case DAY:
                 return (int) ((time - cl.getTimeInMillis()) / (60 * 60 * 1000));
@@ -146,12 +183,28 @@ public class MyView extends View {
 
     private void init(Context context) {
         mContext = context;
+        xleftoffset = dip2px(context, 20);
+        xrightoffset = dip2px(context, 20);
+        ytopoffset = dip2px(context, 20);
+        ybottomoffset = dip2px(context, 20);
+        textSize = dip2px(context, 6);
+        pointR = dip2px(context, 3);
+        lineWidth = dip2px(context, 2);
     }
 
-    float xleftoffset = 100;
-    float xrightoffset = 100;
-    float ytopoffset = 100;
-    float ybottomoffset = 100;
+    private float xleftoffset;
+    private float xrightoffset;
+    private float ytopoffset;
+    private float ybottomoffset;
+    private float textSize;
+
+    public float getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(float textSize) {
+        this.textSize = textSize;
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -173,7 +226,7 @@ public class MyView extends View {
             paintAxis.setColor(Color.BLACK);
         }
         Paint paintText = new Paint();
-        paintText.setTextSize(20);
+        paintText.setTextSize(textSize);
         if (textColorId != -1) {
             paintText.setColor(ContextCompat.getColor(mContext, textColorId));
         } else {
@@ -187,49 +240,62 @@ public class MyView extends View {
         for (int i = 0; i < yTextStep; i++) {
             canvas.drawLine(xleftoffset, ytopoffset + i * spaceY, (float) width, ytopoffset + i * spaceY, paintLine);
             canvas.drawText(yTextList.get(i), 0f, ytopoffset + i * spaceY, paintText);
-        }
-        canvas.drawLine(xleftoffset, 0, xleftoffset, height - ybottomoffset, paintAxis);
-        canvas.drawLine(xleftoffset, height - ybottomoffset, width, height - ybottomoffset, paintAxis);
-        float spaceX = (width - xleftoffset - xrightoffset) / xTextStep;
+        }//绘制辅助线和y轴文字
+//        canvas.drawLine(xleftoffset, 0, xleftoffset, height - ybottomoffset, paintAxis);//画纵轴
+        canvas.drawLine(xleftoffset, height - ybottomoffset, width, height - ybottomoffset, paintAxis);//画横轴
+        float spaceX = (width - xleftoffset - xrightoffset) / (xTextStep-1);
         for (int i = 0; i < xTextStep; i++) {
-            canvas.drawText(xTextList.get(i), xleftoffset + ((i + 1) * spaceX), height, paintText);
-        }
+            canvas.drawText(xTextList.get(i), xleftoffset + (i * spaceX), height, paintText);
+        }//画x轴文字
         if (lineDataList != null) {
             drawData(canvas);
         }
 
     }
 
+    private float pointR;
+    private float lineWidth;
+
     private void drawData(Canvas canvas) {
-        float xspace = (width - xleftoffset - xrightoffset) / xStep;
-        float yspace = (height - ytopoffset - ybottomoffset) / yStep;
-        float r = 5;
+
+        float r = pointR;
         Paint paint = new Paint();
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(lineWidth);
 
         for (int i = 0; i < lineDataList.size(); i++) {
             paint.setColor(ContextCompat.getColor(mContext, lineDataList.get(i).getColor()));
+            Log.e("lanDateListsize:"+mode,lineDataList.get(i).getDate().size()+"");
             for (int j = 0; j < lineDataList.get(i).getDate().size(); j++) {
-                int xLocation = timeToXLocation(lineDataList.get(i).getDate().get(j).getDate());
-                float x = xleftoffset + xLocation * xspace + xStep;
-                int yLocation = 100 - (lineDataList.get(i).getDate().get(j).getIndex());
-                float y = ytopoffset + yspace * yLocation;
+                float[] xy = toPoint(lineDataList.get(i).getDate().get(j));
 
+                Log.e("lanDateListsize:"+mode,format2.format(lineDataList.get(i).getDate().get(j).getDate())+"");
+                float x = xy[0];
+                float y = xy[1];
                 RectF rectf = new RectF();
                 rectf.top = y - r;
                 rectf.bottom = y + r;
                 rectf.left = x - r;
                 rectf.right = x + r;
                 canvas.drawOval(rectf, paint);
-                if(i!=lineDataList.size()-1){
-                    int nxl=timeToXLocation(lineDataList.get(i).getDate().get(j+1).getDate());
-                    float nx=xleftoffset + nxl* xspace + xStep;
-                    int nyl=100 - (lineDataList.get(i).getDate().get(j+1).getIndex());
-                    float ny=ytopoffset + yspace * nyl;
-                    canvas.drawLine(x,y,nx,ny,paint);
+                if (j != lineDataList.get(i).getDate().size() - 1) {
+                    float[] nxy = toPoint(lineDataList.get(i).getDate().get(j + 1));
+                    float nx = nxy[0];
+                    float ny = nxy[1];
+                    canvas.drawLine(x, y, nx, ny, paint);
                 }
             }
         }
+    }
+
+    private float[] toPoint(PointData data) {
+        float xspace = (width - xleftoffset - xrightoffset) / (xStep-1);
+        float yspace = (height - ytopoffset - ybottomoffset) / yStep;
+        int xLocation = timeToXLocation(data.getDate());
+        float x = xleftoffset + xLocation * xspace;
+        int yLocation = yStep - (data.getIndex());
+        float y = ytopoffset + yspace * yLocation;
+        float[] arr = {x, y};
+        return arr;
     }
 
     public static int dip2px(Context context, float dpValue) {
@@ -240,5 +306,24 @@ public class MyView extends View {
     public static int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
+    }
+    SimpleDateFormat format2 = new SimpleDateFormat("yyyy年MM月dd日");
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            Log.e("tag", event.getX() + "," + event.getY());
+            for(int i=0;i<lineDataList.size();i++){
+                for(int j=0;j<lineDataList.get(i).getDate().size();j++){
+                    float[] xy=toPoint(lineDataList.get(i).getDate().get(j));
+                    if(Math.abs(event.getX()-xy[0])<100&&Math.abs(event.getY()-xy[1])<100){
+                        Toast.makeText(mContext,format2.format(lineDataList.get(i).getDate().get(j).getDate()) , Toast.LENGTH_SHORT).show();
+                        i=lineDataList.size();
+                        break;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 }
