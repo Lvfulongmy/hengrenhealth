@@ -32,17 +32,8 @@ public class TestCellActivity extends BaseActivity {
 
     @Override
     protected void findView() {
-        change=(TextView)findViewById(R.id.change);
 //        cellView=(MyView)findViewById(R.id.cell);
-        initTest(MyView.DAY,System.currentTimeMillis());
-        ArrayList<String> yTextList=new ArrayList<String>();
-        for (int i = 100; i > 0; i -= 10) {
-            yTextList.add(i + "%");
-        }
 
-        yTextData.setYtextlist(yTextList);
-        yTextData.setYstep(10);
-        cellView.setMode(MyView.DAY,System.currentTimeMillis(),yTextData);
     }
     private void initTest(int mode, long starttime){
         Calendar cl=Calendar.getInstance();
@@ -54,7 +45,7 @@ public class TestCellActivity extends BaseActivity {
         LineData lineData=new LineData();
         ArrayList<PointData> pointDatas=new ArrayList<>();
         lineData.setDate(pointDatas);
-        lineData.setColor(R.color.colorAccent);
+        lineData.setColor(R.color.orange1);
         data.add(lineData);
         switch (mode){
             case MyView.DAY:
@@ -106,13 +97,6 @@ public class TestCellActivity extends BaseActivity {
     int count;
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.change:
-                int i=count++%3;
-                initTest(i,System.currentTimeMillis());
-                 cellView.setMode(i,System.currentTimeMillis(),yTextData);
-                cellView.invalidate();
-                break;
-        }
+
     }
 }

@@ -1,6 +1,7 @@
 package com.hengrunjiankang.health.widget;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.hengrunjiankang.health.entity.LineData;
 import com.hengrunjiankang.health.entity.PointData;
 import com.hengrunjiankang.health.entity.YTextData;
+import com.hengrunjiankang.health.util.CommonUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -96,9 +99,9 @@ public class MyView extends View {
     public void setMode(int mode, long starttime, YTextData yTextData) {
         this.mode = mode;
         this.starttime = starttime;
-        yStep = 100;
-        yTextStep = yTextData.getYstep();
+        yTextStep = yTextData.getyTextStep();
         yTextList = yTextData.getYtextlist();
+        yStep=yTextData.getYstep();
         Calendar cl = Calendar.getInstance();
         cl.setTimeInMillis(starttime);
         cl.set(Calendar.HOUR_OF_DAY, 0);
@@ -128,7 +131,7 @@ public class MyView extends View {
                 }
                 break;
             case MONTH:
-                xStep = 30;
+                xStep = 31;
                 xTextStep = 6;
                 xTextList = new ArrayList<>();
                 xTextList.add(format.format(cl.getTime()));
@@ -187,7 +190,8 @@ public class MyView extends View {
         xrightoffset = dip2px(context, 20);
         ytopoffset = dip2px(context, 20);
         ybottomoffset = dip2px(context, 20);
-        textSize = dip2px(context, 6);
+        textXSize = dip2px(context, 6);
+        textYSize = dip2px(context, 6);
         pointR = dip2px(context, 3);
         lineWidth = dip2px(context, 2);
     }
@@ -196,14 +200,23 @@ public class MyView extends View {
     private float xrightoffset;
     private float ytopoffset;
     private float ybottomoffset;
-    private float textSize;
+    private float textXSize;
+    private float textYSize;
 
-    public float getTextSize() {
-        return textSize;
+    public float getTextXSize() {
+        return textXSize;
     }
 
-    public void setTextSize(float textSize) {
-        this.textSize = textSize;
+    public void setTextXSize(float textXSize) {
+        this.textXSize = textXSize;
+    }
+
+    public float getTextYSize() {
+        return textYSize;
+    }
+
+    public void setTextYSize(float textYSize) {
+        this.textYSize = textYSize;
     }
 
     @Override
@@ -225,27 +238,45 @@ public class MyView extends View {
         } else {
             paintAxis.setColor(Color.BLACK);
         }
-        Paint paintText = new Paint();
-        paintText.setTextSize(textSize);
+        Paint paintYText = new Paint();
+        paintYText.setTextSize(textYSize);
+        if(yTextList!=null)
+        xleftoffset=paintYText.measureText(yTextList.get(0))+ CommonUtils.dip2px(mContext,10);
+
+        Paint paintXText=new Paint();
+        paintXText.setTextSize(textXSize);
         if (textColorId != -1) {
-            paintText.setColor(ContextCompat.getColor(mContext, textColorId));
+            paintYText.setColor(ContextCompat.getColor(mContext, textColorId));
+            paintXText.setColor(ContextCompat.getColor(mContext, textColorId));
         } else {
-            paintText.setColor(Color.BLACK);
+            paintYText.setColor(Color.BLACK);
+            paintXText.setColor(Color.BLACK);
         }
         paintLine.setAntiAlias(true);
         paintAxis.setAntiAlias(true);
         height = getMeasuredHeight();
         width = getMeasuredWidth();
         float spaceY = (height - ytopoffset - ybottomoffset) / yTextStep;
-        for (int i = 0; i < yTextStep; i++) {
-            canvas.drawLine(xleftoffset, ytopoffset + i * spaceY, (float) width, ytopoffset + i * spaceY, paintLine);
-            canvas.drawText(yTextList.get(i), 0f, ytopoffset + i * spaceY, paintText);
-        }//绘制辅助线和y轴文字
+        if(yTextStep!=0) {
+            for (int i = 0; i < yTextStep + 1; i++) {
+                canvas.drawLine(xleftoffset, ytopoffset + i * spaceY, (float) width, ytopoffset + i * spaceY, paintLine);
+                float xl = xleftoffset - paintYText.measureText(yTextList.get(i)) - CommonUtils.dip2px(mContext, 5);
+                canvas.drawText(yTextList.get(i), xl, ytopoffset + i * spaceY, paintYText);
+
+            }//绘制辅助线和y轴文字
+        }
 //        canvas.drawLine(xleftoffset, 0, xleftoffset, height - ybottomoffset, paintAxis);//画纵轴
         canvas.drawLine(xleftoffset, height - ybottomoffset, width, height - ybottomoffset, paintAxis);//画横轴
-        float spaceX = (width - xleftoffset - xrightoffset) / (xTextStep-1);
+
+        float xl=xleftoffset/2;
+        float spaceX = (width - xl - xrightoffset) / (xTextStep-1);
+        if(xTextList!=null) {
+            xl = xleftoffset - paintXText.measureText(xTextList.get(0)) / 2;
+            spaceX = (width - xl- paintXText.measureText(xTextList.get(0)) / 2 - xrightoffset) / (xTextStep-1);
+        }
+
         for (int i = 0; i < xTextStep; i++) {
-            canvas.drawText(xTextList.get(i), xleftoffset + (i * spaceX), height, paintText);
+            canvas.drawText(xTextList.get(i),xl + (i * spaceX), height, paintXText);
         }//画x轴文字
         if (lineDataList != null) {
             drawData(canvas);
@@ -307,23 +338,32 @@ public class MyView extends View {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
-    SimpleDateFormat format2 = new SimpleDateFormat("yyyy年MM月dd日");
+    private SimpleDateFormat format2 = new SimpleDateFormat("yyyy年MM月dd日 HH:ss:mm");
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             Log.e("tag", event.getX() + "," + event.getY());
+            String temp="";
             for(int i=0;i<lineDataList.size();i++){
                 for(int j=0;j<lineDataList.get(i).getDate().size();j++){
                     float[] xy=toPoint(lineDataList.get(i).getDate().get(j));
-                    if(Math.abs(event.getX()-xy[0])<100&&Math.abs(event.getY()-xy[1])<100){
-                        Toast.makeText(mContext,format2.format(lineDataList.get(i).getDate().get(j).getDate()) , Toast.LENGTH_SHORT).show();
-                        i=lineDataList.size();
-                        break;
+                    if(Math.abs(event.getX()-xy[0])<dip2px(mContext,10)&&Math.abs(event.getY()-xy[1])<dip2px(mContext,10)){
+                        temp+=format2.format(lineDataList.get(i).getDate().get(j).getDate())+"\n测量数据:"+lineDataList.get(i).getDate().get(j).getRealIndex()+"\n";
                     }
                 }
             }
-        }
+            if(!temp.equals("")) {
+                HashMap<String, DialogInterface.OnClickListener> map = new HashMap<>();
+                map.put("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
 
+                CommonUtils.showButtonDialog(mContext, temp, "详细", map);
+            }
+        }
         return true;
     }
+
 }

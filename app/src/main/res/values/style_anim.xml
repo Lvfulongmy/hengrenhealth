@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    -
+
+    <style name="style_anim_for_alpha">
+
+        <item name="android:windowEnterAnimation">@anim/anim_alpha_in</item>
+
+        <!-- 指定显示的动画xml -->
+
+
+        <item name="android:windowExitAnimation">@anim/anim_alpha_out</item>
+
+        <!-- 指定消失的动画xml -->
+
+
+    </style>
+    -
+
+    <style name="style_anim_for_scale_top">
+
+        <item name="android:windowEnterAnimation">@anim/anim_scale_in_from_top</item>
+
+        <!-- 指定显示的动画xml -->
+
+
+        <item name="android:windowExitAnimation">@anim/anim_scale_out_to_top</item>
+
+        <!-- 指定消失的动画xml -->
+
+
+    </style>
+</resources>

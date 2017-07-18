@@ -19,4 +19,12 @@
     <string name="current_time">当前时间</string>
 
     <string name="select_record">切换档案</string>
+    <string name="record_menu_0">体脂档案</string>
+    <string name="record_menu_1">血糖档案</string>
+    <string name="record_menu_2">血氧档案</string>
+    <string name="record_menu_3">体重档案</string>
+    <string name="record_menu_4">血压档案</string>
+    <string name="record_menu_5">心电档案</string>
+    <string name="record_menu_6">尿常规档案</string>
+    <string name="record_menu_7">血脂档案</string>
 </resources>

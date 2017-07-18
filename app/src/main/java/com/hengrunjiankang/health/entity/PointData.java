@@ -7,6 +7,7 @@ package com.hengrunjiankang.health.entity;
 public class PointData {
     private long date;
     private int index;
+    private double realIndex;
 
     public long getDate() {
         return date;
@@ -22,5 +23,13 @@ public class PointData {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public double getRealIndex() {
+        return realIndex;
+    }
+
+    public void setRealIndex(double realIndex) {
+        this.realIndex = realIndex;
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="108dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:id="@+id/lv_main_menu"
+    android:divider="@color/gray3"
+    android:dividerHeight="0.5dp"
+    android:scrollbars="none"
+          android:background="@drawable/gray_stroke"
+          android:padding="1dp"
+/>

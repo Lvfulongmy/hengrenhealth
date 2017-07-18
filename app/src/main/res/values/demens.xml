@@ -4,4 +4,5 @@
     <dimen name="tab_unpress">0dp</dimen>
     <!-- tab indicator未被选中状态 -->
     <dimen name="tab_press">3dp</dimen>
+    <dimen name="txt_normal">14dp</dimen>
 </resources>

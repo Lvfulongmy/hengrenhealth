@@ -9,6 +9,15 @@ import java.util.ArrayList;
 public class YTextData {
     private ArrayList<String> ytextlist;
     private int ystep;
+    private int yTextStep;
+
+    public int getyTextStep() {
+        return yTextStep;
+    }
+
+    public void setyTextStep(int yTextStep) {
+        this.yTextStep = yTextStep;
+    }
 
     public int getYstep() {
         return ystep;

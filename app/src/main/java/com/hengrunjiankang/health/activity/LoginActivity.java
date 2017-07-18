@@ -1,5 +1,7 @@
 package com.hengrunjiankang.health.activity;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -8,6 +10,7 @@ import android.widget.Toast;
 import com.hengrunjiankang.health.R;
 import com.hengrunjiankang.health.okhttp.CommonHttp;
 import com.hengrunjiankang.health.okhttp.CommonHttpCallback;
+import com.hengrunjiankang.health.okhttp.UrlObject;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -29,8 +32,8 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void findView() {
-        etPwd=(EditText)findViewById(R.id.et_login_account);
-        etUsername=(EditText)findViewById(R.id.et_login_password);
+        etPwd=(EditText)findViewById(R.id.et_login_password);
+        etUsername=(EditText)findViewById(R.id.et_login_account);
         tvSubmit=(TextView)findViewById(R.id.btn_login_submit);
     }
 
@@ -53,9 +56,9 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_login_submit:
-                if(check()){
+//                if(check()){
                     login();
-                }
+//                }
                 break;
         }
     }
@@ -76,17 +79,20 @@ public class LoginActivity extends BaseActivity {
     }
     private void login(){
         HashMap<String,String > params=new HashMap<>();
-        params.put("MobileNumber",etUsername.getText().toString());
-        params.put("Password",etPwd.getText().toString());
+//        params.put("MobileNumber",etUsername.getText().toString());
+//        params.put("Password",etPwd.getText().toString());
+                params.put("MobileNumber","13936316095");
+        params.put("Password","123456");
+
         new CommonHttp(new CommonHttpCallback() {
             @Override
             public void requestSeccess(String json) {
-
+                startActivity(new Intent(LoginActivity.this,RecordActivity.class));
             }
 
             @Override
             public void requestFail(String msg) {
-
+                Toast.makeText(LoginActivity.this,msg,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -98,7 +104,7 @@ public class LoginActivity extends BaseActivity {
             public void requestFile(InputStream stream) {
 
             }
-        },false).doRequest("",params);
+        },false).doRequest(UrlObject.LOGINURL,params);
     }
 
 }
