@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true">
+    <include layout="@layout/layout_title_text"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="550"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_width"
+            android:layout_marginTop="17.5dp"
+            android:background="@color/gray_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册手机号"
+                android:textColor="@color/gray3"
+                android:textSize="@dimen/txt_big"/>
+
+            <EditText
+                android:id="@+id/et_findpwd_account"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="请输入注册时使用的手机号"
+                android:paddingLeft="19dp"
+                android:paddingRight="19dp"
+                android:singleLine="true"
+                android:textColorHint="@color/gray2"
+                android:textSize="@dimen/txt_middle"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_width"
+            android:background="@color/gray_line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="验证码"
+                android:textColor="@color/gray3"
+                android:textSize="@dimen/txt_big"/>
+
+            <EditText
+                android:id="@+id/et_findpwd_vcode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="输入手机验证码"
+                android:inputType="textPassword"
+                android:paddingLeft="19dp"
+                android:paddingRight="19dp"
+                android:singleLine="true"
+                android:textColorHint="@color/gray2"
+                android:textSize="@dimen/txt_middle"/>
+
+            <com.hengrunjiankang.health.widget.TimeButton
+                android:id="@+id/btn_findpwd_begvcode"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:textSize="@dimen/txt_normal"
+                android:text="获取验证码"
+                android:background="@drawable/btn_getvcode_bg"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_width"
+            android:background="@color/gray_line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新密码"
+                android:textColor="@color/gray3"
+                android:textSize="@dimen/txt_big"/>
+
+            <EditText
+                android:id="@+id/et_findpwd_pwd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="6-20位数字字母组合"
+                android:inputType="textPassword"
+                android:paddingLeft="19dp"
+                android:paddingRight="19dp"
+                android:singleLine="true"
+                android:textColorHint="@color/gray2"
+                android:textSize="@dimen/txt_middle"/>
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_width"
+            android:background="@color/gray_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="再确认"
+                android:textColor="@color/gray3"
+                android:textSize="@dimen/txt_big"/>
+
+            <EditText
+                android:id="@+id/et_findpwd_pwd2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="再次请输入密码"
+                android:inputType="textPassword"
+                android:paddingLeft="19dp"
+                android:paddingRight="19dp"
+                android:singleLine="true"
+                android:textColorHint="@color/gray2"
+                android:textSize="@dimen/txt_middle"/>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_width"
+            android:background="@color/gray_line"/>
+
+        <TextView
+            android:id="@+id/tv_findpwd_submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_bg_orange"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="完成"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_big"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -11,5 +11,4 @@ public interface CommonHttpCallback {
 
     void requestFail(String msg);
     void requestAbnormal(int code);
-    void requestFile(InputStream stream);
 }

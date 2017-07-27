@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <include layout="@layout/layout_line"/>
+    <LinearLayout
+        android:id="@+id/ll_set_share"
+        style="@style/nvbar_ll">
+
+        <ImageView
+            style="@style/nvbar_img"
+            android:src="@mipmap/icon_set_share"
+            />
+
+        <TextView
+            style="@style/nvbar_txt"
+            android:text="微信分享"/>
+
+        <ImageView
+            style="@style/nvbar_right"
+            />
+    </LinearLayout>
+
+    <include layout="@layout/layout_line"/>
+    <include layout="@layout/layout_line_mt"/>
+
+    <LinearLayout
+        android:id="@+id/ll_set_feedback"
+        style="@style/nvbar_ll">
+
+        <ImageView
+            style="@style/nvbar_img"
+            android:src="@mipmap/icon_set_feedback"
+            />
+
+        <TextView
+            style="@style/nvbar_txt"
+            android:text="意见反馈"/>
+
+        <ImageView
+            style="@style/nvbar_right"
+            />
+    </LinearLayout>
+    <include layout="@layout/layout_line"/>
+
+</LinearLayout>

@@ -341,7 +341,7 @@ public class MyView extends View {
     private SimpleDateFormat format2 = new SimpleDateFormat("yyyy年MM月dd日 HH:ss:mm");
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN&&lineDataList!=null&&lineDataList.size()>0) {
             Log.e("tag", event.getX() + "," + event.getY());
             String temp="";
             for(int i=0;i<lineDataList.size();i++){

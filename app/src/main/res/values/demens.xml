@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="txt_title">25dp</dimen>
+    <dimen name="txt_title">20dp</dimen>
     <dimen name="tab_unpress">0dp</dimen>
     <!-- tab indicator未被选中状态 -->
     <dimen name="tab_press">3dp</dimen>
     <dimen name="txt_normal">14dp</dimen>
+    <dimen name="bar_high">44dp</dimen>
+    <dimen name="txt_small">12dp</dimen>
+    <dimen name="txt_middle">16dp</dimen>
+    <dimen name="txt_big">18dp</dimen>
+    <dimen name="statusbar_height">25dp</dimen>
+    <dimen name="m_small">3dp</dimen>
+
+    <dimen name="m_normal">5dp</dimen>
+
+    <dimen name="m_middle">10dp</dimen>
+
+    <dimen name="m_big">15dp</dimen>
+
+    <dimen name="m_large">20dp</dimen>
+    <dimen name="line_width">1dp</dimen>
 </resources>

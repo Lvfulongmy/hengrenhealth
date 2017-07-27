@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ababab"
+              android:orientation="vertical"
+              android:fitsSystemWindows="true"
+              android:clipToPadding="true">
+    <include layout="@layout/layout_title_text2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="550"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/ll_index_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="注：以上仅供参考"
+                    android:textColor="@color/gray3"
+                    android:padding="3dp"/>
+            </LinearLayout>
+        </ScrollView>
+
+
+            <HorizontalScrollView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent">
+                <ScrollView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                <com.hengrunjiankang.health.widget.zoom.PhotoView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv_index_pic"
+                    android:scaleType="fitXY"/>
+                    </LinearLayout>
+        </ScrollView>
+            </HorizontalScrollView>
+    </LinearLayout>
+
+
+</LinearLayout>

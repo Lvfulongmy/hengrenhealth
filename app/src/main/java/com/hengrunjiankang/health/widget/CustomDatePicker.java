@@ -124,6 +124,10 @@ public class CustomDatePicker {
             @Override
             public void onClick(View view) {
 //                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+                selectedCalender.set(Calendar.HOUR_OF_DAY, 0);
+                selectedCalender.set(Calendar.MINUTE, 0);
+                selectedCalender.set(Calendar.SECOND, 0);
+                selectedCalender.set(Calendar.MILLISECOND, 0);
                 handler.handle(selectedCalender.getTimeInMillis());
                 datePickerDialog.dismiss();
             }

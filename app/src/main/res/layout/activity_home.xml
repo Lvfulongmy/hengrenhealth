@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/ll_activity"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bgcolor"
+              android:clipToPadding="true"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:text="恒瑞健康"
+        android:gravity="center"
+        android:background="@color/white"
+        android:textSize="@dimen/txt_title"
+        android:id="@+id/title_text"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="500"
+        android:id="@+id/home_frame"
+        />
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray2"></View>
+
+    <RadioGroup
+        android:id="@+id/home_rg_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+
+        android:orientation="horizontal"
+        android:paddingTop="3dp">
+
+        <com.hengrunjiankang.health.widget.RadioButtonDrawTop
+            android:id="@+id/home_rb_home"
+            style="@style/style_home_navigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/home_navi_home"
+            android:text="健康档案"
+            android:textSize="14dp"/>
+
+
+        <com.hengrunjiankang.health.widget.RadioButtonDrawTop
+            android:id="@+id/home_rb_my"
+            style="@style/style_home_navigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/home_navi_my"
+            android:text="个人中心"
+            android:textSize="14dp"/>
+
+        <com.hengrunjiankang.health.widget.RadioButtonDrawTop
+            android:id="@+id/home_rb_set"
+            style="@style/style_home_navigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/home_navi_set"
+            android:text="系统设置"
+            android:textSize="14dp"/>
+    </RadioGroup>
+
+
+</LinearLayout>

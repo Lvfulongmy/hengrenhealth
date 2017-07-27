@@ -1,10 +1,15 @@
 package com.hengrunjiankang.health.okhttp;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.hengrunjiankang.health.applaction.MyApplacation;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,10 +39,13 @@ import okhttp3.Response;
 public class CommonHttp {
     private CommonHttpCallback callback;
     public static String cookie;
+    public static String xresponsejson;
     private boolean isfile=false;
-    public CommonHttp(CommonHttpCallback callback,boolean isfile){
+    private Context mContext;
+    public CommonHttp(Context mContext,CommonHttpCallback callback){
         this.callback=callback;
         this.isfile=isfile;
+        this.mContext=mContext;
     }
     private String TAG="OKHTTP";
     public void doRequest(Object... objects) {
@@ -105,6 +113,7 @@ public class CommonHttp {
             public void onResponse(Call call, Response response) throws IOException {
                 if(cookie==null||cookie.equals(""))
                 cookie=response.header("Set-Cookie","").toString();
+                xresponsejson=response.header("X-Responded-JSON","").toString();
                 MyApplacation.cookie=cookie;
                 Message msg=new Message();
                 msg.obj=response;
@@ -118,14 +127,16 @@ public class CommonHttp {
         public boolean handleMessage(Message message) {
             Response response=(Response) message.obj;
             try {
-                if (response.code() == 200) {
-                    if (isfile) {
-                        callback.requestFile(response.body().byteStream());
-                    } else {
+                if (response.code() == 200||response.code()==204) {
+                        int code=  getCode(xresponsejson);
+                    if(code==401) {
+
+                    }else{
                         callback.requestSeccess(response.body().string());
                     }
                 } else if (response.code() == 500) {
-                    callback.requestFail(response.body().string());
+                    Toast.makeText(mContext,getMsg(response.body().string()),Toast.LENGTH_SHORT).show();
+                    callback.requestFail(getMsg(response.body().string()));
                 } else {
                     callback.requestAbnormal(response.code());
                 }
@@ -135,6 +146,29 @@ public class CommonHttp {
             return false;
         }
     });
+    private String getMsg(String json){
+        String str=null;
+        try {
+            JSONObject object=new JSONObject(json);
+            str=object.getString("Message");
+        } catch (JSONException e) {
+            return json;
+        }
+        return str;
+    }
+    private int getCode(String json){
+        int i=-1;
+        if(json==null||json.equals("")){
+            return -1;
+        }
+        try {
+            JSONObject object=new JSONObject(json);
+            i=object.getInt("status");
+        } catch (JSONException e) {
+            return -1;
+        }
+        return i;
+    }
     private class LogInterceptor implements Interceptor {
         @Override
         public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {

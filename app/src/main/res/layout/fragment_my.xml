@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+   <include layout="@layout/layout_line"/>
+    <LinearLayout
+        android:id="@+id/ll_my_account_info"
+        style="@style/nvbar_ll">
+
+        <ImageView
+            style="@style/nvbar_img"
+            android:src="@mipmap/icon_my_acinfo"
+            />
+
+        <TextView
+            style="@style/nvbar_txt"
+            android:text="个人资料"/>
+
+        <ImageView
+            style="@style/nvbar_right"
+            />
+    </LinearLayout>
+
+    <include layout="@layout/layout_line"/>
+    <include layout="@layout/layout_line_mt"/>
+
+    <LinearLayout
+        android:id="@+id/ll_my_account_reset_pwd"
+        style="@style/nvbar_ll">
+
+        <ImageView
+            style="@style/nvbar_img"
+            android:src="@mipmap/icon_my_reset_pwd"
+            />
+
+        <TextView
+            style="@style/nvbar_txt"
+            android:text="修改密码"/>
+
+        <ImageView
+            style="@style/nvbar_right"
+            />
+    </LinearLayout>
+    <include layout="@layout/layout_line"/>
+    <include layout="@layout/layout_line_mt"/>
+
+    <LinearLayout
+        android:id="@+id/ll_my_account_help"
+        style="@style/nvbar_ll">
+
+        <ImageView
+            style="@style/nvbar_img"
+            android:src="@mipmap/icon_my_help"
+            />
+
+        <TextView
+            style="@style/nvbar_txt"
+            android:text="使用帮助"/>
+
+        <ImageView
+            style="@style/nvbar_right"
+            />
+    </LinearLayout>
+    <include layout="@layout/layout_line"/>
+</LinearLayout>
