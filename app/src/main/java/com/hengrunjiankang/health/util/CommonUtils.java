@@ -3,6 +3,7 @@ package com.hengrunjiankang.health.util;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.text.TextUtils;
@@ -59,6 +60,31 @@ public class CommonUtils {
         return context.getResources().getIdentifier(strName, "string",
                 context.getPackageName());
     }
+    /**
+     * 获取用户数据
+     *
+     * @param context
+     * @return
+     */
+    public static SharedPreferences getUserShare(Context context) {
+        return context.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+    }
+
+    public static void saveUserInfo(Context context,String username,String pwd){
+        SharedPreferences sharedPreferences=getUserShare(context);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("username",username);
+        editor.putString("pwd",pwd);
+        editor.commit();
+    }
+    public static void clearUserInfo(Context context){
+        SharedPreferences sharedPreferences=getUserShare(context);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.remove("username");
+        editor.remove("pwd");
+        editor.commit();
+    }
+
     //
     /**
      * 判断手机号码是否合理

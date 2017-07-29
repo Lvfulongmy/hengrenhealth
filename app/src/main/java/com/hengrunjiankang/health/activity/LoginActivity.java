@@ -1,5 +1,6 @@
 package com.hengrunjiankang.health.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.Editable;
@@ -53,7 +54,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void createObject() {
-
+        CommonUtils.clearUserInfo(this);
     }
 
     @Override
@@ -244,7 +245,6 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void login(){
-        initTitle("登录");
         showPDialog();
         HashMap<String,String > params=new HashMap<>();
         params.put("MobileNumber",etUsername.getText().toString());
@@ -257,6 +257,7 @@ public class LoginActivity extends BaseActivity {
             public void requestSeccess(String json) {
                 dismissPDialog();
                 saveHistory("history",etUsername);
+                CommonUtils.saveUserInfo(LoginActivity.this,etUsername.getText().toString(),etPwd.getText().toString());
                 startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                 finish();
                 overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);

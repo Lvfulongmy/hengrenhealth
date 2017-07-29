@@ -77,7 +77,6 @@
                 android:layout_weight="1"
                 android:background="@color/transparent"
                 android:hint="输入手机验证码"
-                android:inputType="textPassword"
                 android:paddingLeft="19dp"
                 android:paddingRight="19dp"
                 android:singleLine="true"

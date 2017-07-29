@@ -21,5 +21,10 @@ public class UrlObject {
     public static final String FINDPWD=BASEURL+"/api/Account/ResetPassword";
     public static final String REGISTERURL=BASEURL+"/api/Account/Register";
     public static final String ACCOUNTINFO=BASEURL+"/api/Account/QueryUser?IdentityUserIdAssign=Id&IsGetOne=true";
-    public static final String SAVAUSERINFO=BASEURL+"/api/Account/SaveUser?IdentityUserIdAssign=Id";
+    public static final String SAVAUSERINFO=BASEURL+"/api/Account/SaveUser";
+    public static final String SHAREURL=BASEURL+"/content/mobile/download.html";
+    public static final String PROTOCLURL=BASEURL+"/content/mobile/useragreement.html";
+    public static final String USERHELPURL=BASEURL+"/content/mobile/helper.html";
+    public static final String FEEDBACKURL=BASEURL+"/api/Account/SaveOpinion";
+    public static final String QUITURL=BASEURL+"/api/Account/LogOff";
 }

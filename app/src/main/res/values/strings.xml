@@ -29,4 +29,5 @@
     <string name="record_menu_7">血脂档案</string>
     <string name="net_error">访问服务器失败，请检查网络</string>
     <integer name="page_weight">550</integer>
+    <string name="wxAppId">wx325277be0e9f1dcc</string>
 </resources>

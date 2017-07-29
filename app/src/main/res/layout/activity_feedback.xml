@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bgcolor"
+              android:clipToPadding="true"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+    >
+
+    <include layout="@layout/layout_title_text"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="550"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/white"
+            android:padding="15dp"
+            android:hint="您的意见我们的进步..."
+            android:textSize="@dimen/txt_normal"
+            android:gravity="top"
+            android:id="@+id/et_feedback_content"
+            />
+
+        <TextView
+            android:id="@+id/tv_feedback_submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_bg_orange"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_big"/>
+    </LinearLayout>
+
+</LinearLayout>

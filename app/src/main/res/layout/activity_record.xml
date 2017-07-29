@@ -5,7 +5,9 @@
               android:background="@color/bgcolor"
               android:orientation="vertical"
               android:fitsSystemWindows="true"
-              android:clipToPadding="true">
+              android:clipToPadding="true"
+              xmlns:ptr="http://schemas.android.com/apk/res-auto"
+              >
 
     <include layout="@layout/layout_title_action"/>
 
@@ -148,6 +150,39 @@
 
                 </android.support.v4.view.ViewPager>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:id="@+id/ll_blood_push_indexview"
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                    android:layout_width="26dp"
+                    android:layout_height="6dp"
+                    android:background="@drawable/orangeline"
+                    android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray3"
+                        android:text="您的收缩压MMHG"
+                        android:textSize="@dimen/txt_small"
+                        android:layout_marginLeft="5dp"/>
+                    <TextView
+                        android:layout_width="26dp"
+                        android:layout_height="6dp"
+                        android:background="@drawable/blueline"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray3"
+                        android:text="您的舒张压MMHG"
+                        android:textSize="@dimen/txt_small"
+                        android:layout_marginLeft="5dp"/>
+                </LinearLayout>
+
                 <include layout="@layout/layout_line_mt"/>
 
                 <LinearLayout
@@ -279,13 +314,15 @@
 
                 <include layout="@layout/layout_line"/>
 
-                <ListView
+                <com.handmark.pulltorefresh.library.PullToRefreshListView
+
                     android:id="@+id/lv_record_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    ptr:ptrDrawable="@mipmap/img_loading"
                     >
 
-                </ListView>
+                </com.handmark.pulltorefresh.library.PullToRefreshListView>
 
             </LinearLayout>
             </FrameLayout>

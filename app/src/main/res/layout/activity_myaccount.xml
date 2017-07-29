@@ -91,8 +91,8 @@
                     android:text="手机号"
                     />
 
-                <EditText
-                    android:id="@+id/et_account_mobile"
+                <TextView
+                    android:id="@+id/tv_account_mobile"
                     style="@style/editbar_et"
                     />
             </LinearLayout>

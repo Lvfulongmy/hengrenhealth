@@ -161,7 +161,7 @@ public class CellFragment extends BaseFragment {
                 yTextData.setYtextlist(yTextList);
                 yTextData.setYstep(100);
                 yTextData.setyTextStep(yTextList.size()-1);
-                url=UrlObject.QUERYWEIGHTDATAURL+urlParam+"&SpecifyProperty=Collectdate;Weight";
+                url=UrlObject.QUERYWEIGHTDATAURL+urlParam+"&SpecifyProperty=Collectdate;weight";
                 break;
             case 4://血压
                 for (int i = 200; i >=60; i -= 20) {
@@ -306,13 +306,13 @@ public class CellFragment extends BaseFragment {
                     }
                     PointData pointData = new PointData();
                     pointData.setDate(calendar.getTimeInMillis());
-                    pointData.setIndex(data4.get(i).getDiastolicpressure()-60);
-                    pointData.setRealIndex(data4.get(i).getDiastolicpressure());
+                    pointData.setIndex(data4.get(i).getSystolicpressure()-60);
+                    pointData.setRealIndex(data4.get(i).getSystolicpressure());
                     pointDatas.add(pointData);
                     PointData pointData2 = new PointData();
                     pointData2.setDate(calendar.getTimeInMillis());
-                    pointData2.setIndex(data4.get(i).getSystolicpressure()-60);
-                    pointData2.setRealIndex(data4.get(i).getSystolicpressure());
+                    pointData2.setIndex(data4.get(i).getDiastolicpressure()-60);
+                    pointData2.setRealIndex(data4.get(i).getDiastolicpressure());
                     pointDatas2.add(pointData2);
                 }
                 break;

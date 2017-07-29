@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.hengrunjiankang.health.R;
 import com.hengrunjiankang.health.adapter.RecordListAdapter;
 import com.hengrunjiankang.health.adapter.RecordMenuAdapter;
@@ -36,6 +38,9 @@ import com.hengrunjiankang.health.okhttp.UrlObject;
 import com.hengrunjiankang.health.util.CommonUtils;
 import com.hengrunjiankang.health.widget.CustomDatePicker;
 import com.hengrunjiankang.health.widget.MyView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,10 +71,10 @@ public class RecordActivity extends BaseFramentActivity {
     private TextView tvNearOnce2;
     private LinearLayout llBottomView;
     private LinearLayout llRecordList;
-    private ListView lvRecordList;
+    private PullToRefreshListView lvRecordList;
     private RecordListAdapter mRecordListAdapter;
-
-
+    private int pageIndex=1;
+    private LinearLayout llBloodPushIndexView;
     @Override
     protected int setLayout() {
         return R.layout.activity_record;
@@ -90,7 +95,9 @@ public class RecordActivity extends BaseFramentActivity {
         tvNearOnce2 = (TextView) findViewById(R.id.tv_record_near2);
         llBottomView = (LinearLayout) findViewById(R.id.ll_bommom_view);
         llRecordList = (LinearLayout) findViewById(R.id.ll_record_list);
-        lvRecordList = (ListView) findViewById(R.id.lv_record_list);
+        lvRecordList = (PullToRefreshListView) findViewById(R.id.lv_record_list);
+        lvRecordList.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+        llBloodPushIndexView=(LinearLayout)findViewById(R.id.ll_blood_push_indexview);
 //        lvRecordList.setLoader(new MyListViewLoaderMore.OnLoader() {
 //            @Override
 //            public void onLoader() {
@@ -200,6 +207,13 @@ public class RecordActivity extends BaseFramentActivity {
     @Override
     protected void setListener() {
 //        change.setOnClickListener(this);
+        lvRecordList.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                if(getListByPageUrl!=null)
+                    getListData(getListByPageUrl,pageIndex+1);
+            }
+        });
         tvStratTime.setOnClickListener(this);
         tvEndTime.setOnClickListener(this);
         tvTitleRight.setOnClickListener(this);
@@ -238,8 +252,8 @@ public class RecordActivity extends BaseFramentActivity {
                 }
                 setStratTime(nowtime);
                 setEndTime(getEndTime(nowtime, CellFragment.mode));
-                splashCell();
                 nowpos = position;
+                splashCell();
             }
 
             @Override
@@ -310,8 +324,10 @@ public class RecordActivity extends BaseFramentActivity {
         windowMenu.setAnimationStyle(R.style.style_anim_for_scale_top);
 
     }
-
+    private String getListByPageUrl;
     private void splashData() {
+        getListByPageUrl=null;
+        pageIndex=1;
         String url = null;
         String urlParamHigh = "&IsGetOne=true";
         String urlParamLow = "&IsGetOne=true";
@@ -335,6 +351,7 @@ public class RecordActivity extends BaseFramentActivity {
                 getTvData(url, "最近一次测量:", "%", tvNearOnce, true);
                 llBottomView.setVisibility(View.VISIBLE);
                 llRecordList.setVisibility(View.INVISIBLE);
+                llBloodPushIndexView.setVisibility(View.GONE);
                 break;
             case 1://血糖
                 tvHistroyHigh2.setVisibility(View.GONE);
@@ -351,6 +368,7 @@ public class RecordActivity extends BaseFramentActivity {
                 llBottomView.setVisibility(View.VISIBLE);
                 llRecordList.setVisibility(View.INVISIBLE);
 //                url=UrlObject.QUERYBGDATA+urlParam+"&SpecifyProperty=Collectdate;Bloodsugar";
+                llBloodPushIndexView.setVisibility(View.GONE);
                 break;
             case 2://血氧
                 tvHistroyHigh2.setVisibility(View.GONE);
@@ -366,22 +384,24 @@ public class RecordActivity extends BaseFramentActivity {
                 getTvData(url, "最近一次测量:", "%", tvNearOnce, true);
                 llBottomView.setVisibility(View.VISIBLE);
                 llRecordList.setVisibility(View.INVISIBLE);
+                llBloodPushIndexView.setVisibility(View.GONE);
 //                url=UrlObject.QUERYOXYGENDATAURL+urlParam+"&SpecifyProperty=Collectdate;Oxygen";
                 break;
             case 3://体重
                 tvHistroyHigh2.setVisibility(View.GONE);
                 tvHistroyLow2.setVisibility(View.GONE);
                 tvNearOnce2.setVisibility(View.GONE);
-                urlParamHigh += "&Sort=Weight desc";
-                url = UrlObject.QUERYWEIGHTDATAURL + urlParamHigh + "&SpecifyProperty=Collectdate;Weight";
+                urlParamHigh += "&Sort=weight desc";
+                url = UrlObject.QUERYWEIGHTDATAURL + urlParamHigh + "&SpecifyProperty=Collectdate;weight";
                 getTvData(url, "历史最高值:", "KG", tvHistroyHigh, false);
-                urlParamLow += "&Sort=Weight";
-                url = UrlObject.QUERYWEIGHTDATAURL + urlParamLow + "&SpecifyProperty=Collectdate;Weight";
+                urlParamLow += "&Sort=weight";
+                url = UrlObject.QUERYWEIGHTDATAURL + urlParamLow + "&SpecifyProperty=Collectdate;weight";
                 getTvData(url, "历史最低值:", "KG", tvHistroyLow, false);
-                url = UrlObject.QUERYWEIGHTDATAURL + urlParamNear + "&SpecifyProperty=Collectdate;Weight";
+                url = UrlObject.QUERYWEIGHTDATAURL + urlParamNear + "&SpecifyProperty=Collectdate;weight";
                 getTvData(url, "最近一次测量:", "KG", tvNearOnce, true);
                 llBottomView.setVisibility(View.VISIBLE);
                 llRecordList.setVisibility(View.INVISIBLE);
+                llBloodPushIndexView.setVisibility(View.GONE);
 //                url=UrlObject.QUERYWEIGHTDATAURL+urlParam+"&SpecifyProperty=Collectdate;Weight";
                 break;
             case 4://血压
@@ -390,45 +410,53 @@ public class RecordActivity extends BaseFramentActivity {
                 tvNearOnce2.setVisibility(View.VISIBLE);
                 urlParamHigh += "&Sort=Diastolicpressure desc";
                 url = UrlObject.QUERYBLOODPRESSURE + urlParamHigh + "&SpecifyProperty=Collectdate;Diastolicpressure";
-                getTvData(url, "舒张压历史最高值:", "mmHg", tvHistroyHigh, false, 12);
+                getTvData(url, "舒张压历史最高值:", "mmHg", tvHistroyHigh2, false, 12);
                 urlParamLow += "&Sort=Diastolicpressure";
                 url = UrlObject.QUERYBLOODPRESSURE + urlParamLow + "&SpecifyProperty=Collectdate;Diastolicpressure";
-                getTvData(url, "舒张压历史最低值:", "mmHg", tvHistroyLow, false, 12);
+                getTvData(url, "舒张压历史最低值:", "mmHg", tvHistroyLow2, false, 12);
                 url = UrlObject.QUERYBLOODPRESSURE + urlParamNear + "&SpecifyProperty=Collectdate;Diastolicpressure";
-                getTvData(url, "最近一次:舒张压", "mmHg", tvNearOnce, false, 12);
+                getTvData(url, "/舒张压:", "mmHg", tvNearOnce2, true, 12);
                 urlParamHigh = "&IsGetOne=true";
                 urlParamLow = "&IsGetOne=true";
                 urlParamNear = "&Sort=Collectdate desc&IsGetOne=true";
                 urlParamHigh += "&Sort=Systolicpressure desc";
                 url = UrlObject.QUERYBLOODPRESSURE + urlParamHigh + "&SpecifyProperty=Collectdate;Systolicpressure";
-                getTvData(url, "收缩压历史最高值:", "mmHg", tvHistroyHigh2, false, 12);
+                getTvData(url, "收缩压历史最高值:", "mmHg", tvHistroyHigh, false, 12);
                 urlParamLow += "&Sort=Systolicpressure";
                 url = UrlObject.QUERYBLOODPRESSURE + urlParamLow + "&SpecifyProperty=Collectdate;Systolicpressure";
-                getTvData(url, "收缩压历史最低值:", "mmHg", tvHistroyLow2, false, 12);
+                getTvData(url, "收缩压历史最低值:", "mmHg", tvHistroyLow, false, 12);
                 url = UrlObject.QUERYBLOODPRESSURE + urlParamNear + "&SpecifyProperty=Collectdate;Systolicpressure";
-                getTvData(url, "/收缩压:", "mmHg", tvNearOnce2, true, 12);
+                getTvData(url, "最近一次:收缩压", "mmHg", tvNearOnce, false, 12);
                 llBottomView.setVisibility(View.VISIBLE);
                 llRecordList.setVisibility(View.INVISIBLE);
+                llBloodPushIndexView.setVisibility(View.VISIBLE);
 //                url=UrlObject.QUERYBLOODPRESSURE+urlParam+"&SpecifyProperty=Collectdate;Diastolicpressure;Systolicpressure";
                 break;
             case 5:
                 llBottomView.setVisibility(View.INVISIBLE);
                 llRecordList.setVisibility(View.VISIBLE);
+                llBloodPushIndexView.setVisibility(View.GONE);
                 url=UrlObject.QUREYECG+urlParam;
-                getListData(url);
+                getListData(url,pageIndex);
+                getListByPageUrl=url;
                 break;
             case 6:
                 llBottomView.setVisibility(View.INVISIBLE);
                 llRecordList.setVisibility(View.VISIBLE);
+                llBloodPushIndexView.setVisibility(View.GONE);
                 url=UrlObject.QUERYUR+urlParam;
-                getListData(url);
+                getListData(url,pageIndex);
+                getListByPageUrl=url;
                 break;
             case 7:
                 llBottomView.setVisibility(View.INVISIBLE);
                 llRecordList.setVisibility(View.VISIBLE);
+                llBloodPushIndexView.setVisibility(View.GONE);
                 url=UrlObject.QUERYBLOODFAT+urlParam;
-                getListData(url);
+                getListData(url,pageIndex);
+                getListByPageUrl=url;
                 break;
+
         }
     }
 
@@ -438,32 +466,69 @@ public class RecordActivity extends BaseFramentActivity {
     ArrayList<UREntity> recordListUR;
     ArrayList<BloodFatEntity> recordListBF;
     ArrayList<EcgEntity> recordListEcg;
-    private void getListData(String url) {
+    private void getListData(String url,int page) {
+        final int requestPage=page;
+        if(page==1)
         showPDialog();
         new CommonHttp(RecordActivity.this,new CommonHttpCallback() {
             @Override
             public void requestSeccess(String json) {
                 dismissPDialog();
-                ArrayList<RecordEntity> recordListData = (ArrayList<RecordEntity>) JSON.parseArray(json,RecordEntity.class);
-                mRecordListAdapter.setData(recordListData);
-                lvRecordList.setAdapter(mRecordListAdapter);
-                switch (type) {
-                    case 5:
-                        recordListEcg=(ArrayList<EcgEntity>)JSON.parseArray(json,EcgEntity.class);
-                        break;
-                    case 6:
-                        recordListUR=(ArrayList<UREntity>) JSON.parseArray(json,UREntity.class);
-                        break;
-                    case 7:
-                        recordListBF=(ArrayList<BloodFatEntity>) JSON.parseArray(json,BloodFatEntity.class);
-                        break;
+                try {
+                    JSONObject jsonObject=new JSONObject(json);
+                    json=jsonObject.getJSONArray("Items").toString();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    lvRecordList.onRefreshComplete();
                 }
+
+                ArrayList<RecordEntity> recordListData = (ArrayList<RecordEntity>) JSON.parseArray(json, RecordEntity.class);
+                    if(recordListData!=null&&recordListData.size()>0) {
+                        if (requestPage == 1) {
+
+                            mRecordListAdapter.setData(recordListData);
+                            lvRecordList.setAdapter(mRecordListAdapter);
+                            switch (type) {
+                                case 5:
+                                    recordListEcg = (ArrayList<EcgEntity>) JSON.parseArray(json, EcgEntity.class);
+                                    break;
+                                case 6:
+                                    recordListUR = (ArrayList<UREntity>) JSON.parseArray(json, UREntity.class);
+                                    break;
+                                case 7:
+                                    recordListBF = (ArrayList<BloodFatEntity>) JSON.parseArray(json, BloodFatEntity.class);
+                                    break;
+                            }
+                        } else {
+                            pageIndex=requestPage;
+                            mRecordListAdapter.getData().addAll(recordListData);
+                            mRecordListAdapter.notifyDataSetChanged();
+                            lvRecordList.onRefreshComplete();
+                            switch (type) {
+                                case 5:
+                                    recordListEcg.addAll( (ArrayList<EcgEntity>) JSON.parseArray(json, EcgEntity.class));
+                                    break;
+                                case 6:
+                                    recordListUR.addAll((ArrayList<UREntity>) JSON.parseArray(json, UREntity.class));
+                                    break;
+                                case 7:
+                                    recordListBF.addAll ((ArrayList<BloodFatEntity>) JSON.parseArray(json, BloodFatEntity.class));
+                                    break;
+                            }
+                        }
+                    }else{
+//                        Toast.makeText(RecordActivity.this,"没有更多",Toast.LENGTH_SHORT).show();
+                        lvRecordList.onRefreshComplete();
+                    }
+
+
             }
 
             @Override
             public void requestFail(String msg) {
                 Toast.makeText(RecordActivity.this,msg,Toast.LENGTH_SHORT).show();
                 dismissPDialog();
+                lvRecordList.onRefreshComplete();
                 Log.e("data", msg);
             }
 
@@ -471,10 +536,11 @@ public class RecordActivity extends BaseFramentActivity {
             public void requestAbnormal(int code) {
                 Toast.makeText(RecordActivity.this,R.string.net_error+code,Toast.LENGTH_SHORT).show();
                 dismissPDialog();
+                lvRecordList.onRefreshComplete();
             }
 
 
-        }).doRequest(url);
+        }).doRequest(url+"&QueryLimit=15&PageIndex="+page);
 
     }
 

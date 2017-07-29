@@ -12,10 +12,21 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        mySigning {
+            keyAlias 'hengzhan'
+            keyPassword '123456'
+            storeFile file('D:/keystore/hengzhan.jks')
+            storePassword '123456'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.mySigning
         }
     }
     packagingOptions {
@@ -43,5 +54,7 @@ dependencies {
     compile 'com.tencent.bugly:nativecrashreport:3.3.0'
     compile 'org.quanqi:CircularProgress:1.0.2'
     compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
-    compile'liji.library.dev:citypickerview:0.1.0'
+    compile 'liji.library.dev:citypickerview:0.1.0'
+    compile project(':pulltorefresh')
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }

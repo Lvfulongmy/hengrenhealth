@@ -39,6 +39,7 @@ public class WebViewActivity extends BaseActivity {
 		switch (v.getId()) {
 		case R.id.title_back:
 			this.finish();
+			overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
 			break;
 		default:
 			break;
@@ -86,6 +87,7 @@ public class WebViewActivity extends BaseActivity {
 	@Override
 	protected void getData() {
 		// TODO Auto-generated method stub
+//		showPDialog();
 		initTitle(getIntent().getStringExtra("title"));
 		final String url = getIntent().getStringExtra("url");
 		// String url="http://www.baidu.com";
@@ -100,7 +102,7 @@ public class WebViewActivity extends BaseActivity {
 				// TODO Auto-generated method stub
 				super.onPageFinished(view, url);
 //				progerBar.setVisibility(View.GONE);
-
+//				dismissPDialog();
 			}
 
 			@Override

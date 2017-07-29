@@ -8,18 +8,20 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="true">
     <include layout="@layout/layout_title_text"></include>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-        android:src="@mipmap/icon_login"
-        android:layout_margin="20dp"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="550"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/icon_login"
+            android:layout_margin="20dp"/>
 
         <View
             android:layout_width="match_parent"
@@ -88,7 +90,6 @@
                 android:layout_weight="1"
                 android:background="@color/transparent"
                 android:hint="输入手机验证码"
-                android:inputType="textPassword"
                 android:paddingLeft="19dp"
                 android:paddingRight="19dp"
                 android:singleLine="true"
@@ -162,7 +163,45 @@
             android:text="登录"
             android:textColor="@color/white"
             android:textSize="@dimen/txt_big"/>
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            ></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp">
+            <ToggleButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/rb_buttonicon"
+                android:textOff=""
+                android:textOn=""
+                android:button="@null"
+                android:id="@+id/tb_register_agree"
+                style="?android:attr/borderlessButtonStyle"
+            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_middle"
+                android:text="我已阅读并同意"
+                android:layout_margin="2dp"
+                android:textColor="@color/gray2"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_middle"
+                android:text="《恒瑞健康用户协议》"
+                android:layout_margin="2dp"
+                android:textColor="@color/orange1"
+                android:id="@+id/tv_register_protocol"/>
+        </LinearLayout>
 
     </LinearLayout>
+
+
 
 </LinearLayout>

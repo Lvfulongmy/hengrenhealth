@@ -82,7 +82,7 @@ public class EcgDetailsActivity extends BaseActivity {
         ArrayList<EcgIndexEntity> listEcg=new ArrayList<>();
         listEcg.add(new EcgIndexEntity("检量日期:",ecgEntity.getCollectdate().substring(0,10)));
         listEcg.add(new EcgIndexEntity("检量时间:",ecgEntity.getCollectdate().substring(11,19)));
-        listEcg.add(new EcgIndexEntity("记录长度:",""));
+        listEcg.add(new EcgIndexEntity("记录长度:","20s"));
         listEcg.add(new EcgIndexEntity("平均心率:",ecgEntity.getAvr_heartrate()));
         listEcg.add(new EcgIndexEntity("PR间期 \n(120-200MS)",ecgEntity.getAvr_pr()+"MS"));
         listEcg.add(new EcgIndexEntity("QT间期 \n(340-430MS)",ecgEntity.getAvr_qt()+"MS"));
@@ -92,7 +92,7 @@ public class EcgDetailsActivity extends BaseActivity {
         listEcg.add(new EcgIndexEntity("RR间期 \n(600-1000MS)",ecgEntity.getAvr_rr()+"MS"));
         listEcg.add(new EcgIndexEntity("P波幅度 \n(0-0.25MV)",ecgEntity.getAvr_pvolt()+"MV"));
         listEcg.add(new EcgIndexEntity("R波幅度 \n(0.5-2.0MV)",ecgEntity.getAvr_rvolt()+"MV"));
-        listEcg.add(new EcgIndexEntity("T波幅度 \n(0.1-0.5MV)",ecgEntity.getAvr_tvolt()+""));
+        listEcg.add(new EcgIndexEntity("T波幅度 \n(0.1-0.5MV)",ecgEntity.getAvr_tvolt()+"MV"));
         for (int i = 0; i < listEcg.size(); i++) {
             LinearLayout sub = (LinearLayout) inflater.inflate(R.layout.item_ecg_list, null);
             TextView tvName = sub.findViewById(R.id.tv_item_name);

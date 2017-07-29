@@ -49,7 +49,7 @@ public class HomeActivity extends BaseFramentActivity {
                     case R.id.home_rb_home:
                         pageid=checkedId;
                         switchFragment(new HomeFragment());
-                        initTitleString("恒润健康");
+                        initTitleString("恒瑞健康");
                         break;
 
                     case R.id.home_rb_set:

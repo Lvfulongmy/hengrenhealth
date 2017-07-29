@@ -2,9 +2,11 @@ package com.hengrunjiankang.health.activity;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.hengrunjiankang.health.R;
 import com.hengrunjiankang.health.method.GetVCode;
@@ -31,7 +33,9 @@ public class RegisterActivity extends BaseActivity {
     private String strPwd;
     private TextView tvSubmit;
     private GetVCode getVCode;
-
+    private ToggleButton tbAgree;
+    private TextView tvProtocol;
+    private boolean isAgreeProtoco;
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
@@ -59,6 +63,13 @@ public class RegisterActivity extends BaseActivity {
                 if (checked()) {
                     submit();
                 }
+                break;
+            case R.id.tv_register_protocol:
+                Intent intent=new Intent(RegisterActivity.this,WebViewActivity.class);
+                intent.putExtra("title","用户协议");
+                intent.putExtra("url",UrlObject.PROTOCLURL);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);
                 break;
             default:
                 break;
@@ -94,7 +105,6 @@ public class RegisterActivity extends BaseActivity {
     }
 
     private void login(){
-        initTitle("登录");
        showPDialog();
         HashMap<String,String > params=new HashMap<>();
         params.put("MobileNumber",strMobile);
@@ -106,7 +116,8 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void requestSeccess(String json) {
                 dismissPDialog();
-                startActivity(new Intent(RegisterActivity.this,RecordActivity.class));
+                CommonUtils.saveUserInfo(RegisterActivity.this,strMobile,strPwd);
+                startActivity(new Intent(RegisterActivity.this,HomeActivity.class));
                 finish();
                 overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);
             }
@@ -129,6 +140,10 @@ public class RegisterActivity extends BaseActivity {
 
     private boolean checked() {
         strMobile = etMobile.getText().toString();
+        if(!isAgreeProtoco){
+            Toast.makeText(this, "请仔细阅读用户协议并同意", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if (strMobile == null || strMobile.equals("")) {
             Toast.makeText(this, "请输入手机号码", Toast.LENGTH_SHORT).show();
             return false;
@@ -164,6 +179,8 @@ public class RegisterActivity extends BaseActivity {
         etPwd = (EditText) findViewById(R.id.et_register_pwd);
         tbGetVCode = (TimeButton) findViewById(R.id.btn_register_begvcode);
         tvSubmit = (TextView) findViewById(R.id.tv_register_submit);
+        tbAgree=(ToggleButton)findViewById(R.id.tb_register_agree);
+        tvProtocol=(TextView)findViewById(R.id.tv_register_protocol);
     }
 
     @Override
@@ -177,6 +194,13 @@ public class RegisterActivity extends BaseActivity {
         // TODO Auto-generated method stub
         tbGetVCode.setOnClickListener(this);
         tvSubmit.setOnClickListener(this);
+        tvProtocol.setOnClickListener(this);
+        tbAgree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                isAgreeProtoco=b;
+            }
+        });
     }
 
     @Override

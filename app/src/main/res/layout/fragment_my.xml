@@ -63,4 +63,19 @@
             />
     </LinearLayout>
     <include layout="@layout/layout_line"/>
+
+    <TextView
+        android:id="@+id/tv_my_quit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/gray_stroke"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="退出登录"
+        android:textColor="@color/gray3"
+        android:textSize="@dimen/txt_big"/>
 </LinearLayout>
