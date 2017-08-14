@@ -73,7 +73,7 @@
 
                 <TextView
                     style="@style/editbar_txt"
-                    android:text="真事姓名"
+                    android:text="真实姓名"
                     />
 
                 <EditText

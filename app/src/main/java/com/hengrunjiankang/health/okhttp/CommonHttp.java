@@ -6,7 +6,8 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.hengrunjiankang.health.applaction.MyApplacation;
+import com.hengrunjiankang.health.applaction.MyApplication;
+import com.hengrunjiankang.health.util.CommonUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,14 +16,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Queue;
-import java.util.logging.LogRecord;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -56,8 +53,8 @@ public class CommonHttp {
         Request.Builder requestBuiler = new Request.Builder();
         requestBuiler.header("X-Requested-With","XMLHttpRequest");
 
-        if(MyApplacation.cookie!=null){
-            requestBuiler.header("Cookie",MyApplacation.cookie);
+        if(MyApplication.cookie!=null){
+            requestBuiler.header("Cookie", MyApplication.cookie);
         }
 //        if(cookie!=null&&!cookie.equals("")){
 //            requestBuiler.header("Cookie",cookie);
@@ -111,10 +108,10 @@ public class CommonHttp {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if(cookie==null||cookie.equals(""))
                 cookie=response.header("Set-Cookie","").toString();
                 xresponsejson=response.header("X-Responded-JSON","").toString();
-                MyApplacation.cookie=cookie;
+                if(cookie!=null&&!cookie.equals(""))
+                MyApplication.cookie=cookie;
                 Message msg=new Message();
                 msg.obj=response;
                 mHandler.sendMessage(msg);
@@ -130,7 +127,7 @@ public class CommonHttp {
                 if (response.code() == 200||response.code()==204) {
                         int code=  getCode(xresponsejson);
                     if(code==401) {
-
+                        CommonUtils.gotoLogin(mContext);
                     }else{
                         callback.requestSeccess(response.body().string());
                     }

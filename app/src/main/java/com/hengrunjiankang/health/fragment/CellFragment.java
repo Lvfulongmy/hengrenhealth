@@ -110,13 +110,14 @@ public class CellFragment extends BaseFragment {
 
     @Override
     protected void getData() {
-        splash(RecordActivity.nowtime,RecordActivity.type);
+        splash(RecordActivity.nowtime,RecordActivity.type,false);
+    }
+    public void splash(long time,int type){
+        splash(time,type,true);
     }
 
-    public void splash(long time, int type) {
-        if(mActivity!=null){
-            showPDialog();
-        }
+    public void splash(long time, int type,boolean isshow) {
+
         final long stratTime=time;
         final int checkType=type;
         ArrayList<String> yTextList = new ArrayList<String>();
@@ -172,6 +173,9 @@ public class CellFragment extends BaseFragment {
                 yTextData.setyTextStep(yTextList.size()-1);
                 url=UrlObject.QUERYBLOODPRESSURE+urlParam+"&SpecifyProperty=Collectdate;Diastolicpressure;Systolicpressure";
                 break;
+        }
+        if(mActivity!=null&&isshow){
+            showPDialog();
         }
         if (cellView != null) {
             try {

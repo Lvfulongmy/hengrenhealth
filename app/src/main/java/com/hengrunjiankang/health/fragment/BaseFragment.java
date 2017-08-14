@@ -52,6 +52,7 @@ public abstract class BaseFragment extends Fragment implements OnClickListener {
 			progressView = CommonUtils.getProgressDialog(mActivity);
 		}
 		else{
+			if(!progressView.isShowing())
 			progressView.show();
 		}
 
@@ -59,7 +60,7 @@ public abstract class BaseFragment extends Fragment implements OnClickListener {
 	protected void dismissPDialog(){
 		progressCount--;
 		if(progressCount<=0) {
-			if (progressView != null) {
+			if (progressView != null&&progressView.isShowing()) {
 				progressView.dismiss();
 				progressCount=0;
 			}

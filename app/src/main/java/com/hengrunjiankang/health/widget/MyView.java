@@ -338,7 +338,7 @@ public class MyView extends View {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
-    private SimpleDateFormat format2 = new SimpleDateFormat("yyyy年MM月dd日 HH:ss:mm");
+    private SimpleDateFormat format2 = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN&&lineDataList!=null&&lineDataList.size()>0) {

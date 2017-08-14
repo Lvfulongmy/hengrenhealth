@@ -1,6 +1,7 @@
 package com.hengrunjiankang.health.activity;
 
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -67,37 +68,37 @@ public class RecordDetailsActivity extends BaseActivity {
                 list.add(new BloodFatIndexEntity("低密度脂蛋白\n胆固醇含量\n（CALCLDL）", bfEntity.getCALCLDL()+"mmol/L", "合适水平：≤3.10mmol/L", "临界：3.13—3.59mmol/L", "升高：≥3.62mmol/L"));
                 list.add(new BloodFatIndexEntity("总胆固醇和\n高密度胆\n固醇的比值\n（TC_HDL）", bfEntity.getTC_HDL()+"mmol/L", "男性合适水平：≤4.5mmol/L\n女性合适水平：≤3.5mmol/L", "", "升高：≥5.0mmol/L"));
                 ArrayList<Integer> colorList=new ArrayList<>();
-                if(bfEntity.getCHOL()<5.20){
-                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
-                }else if(bfEntity.getCHOL()>=5.20&&bfEntity.getCHOL()<=5.66){
-                    colorList.add(ContextCompat.getColor(this,R.color.orange_index));
-                }else if(bfEntity.getCHOL()>5.66){
-                    colorList.add(ContextCompat.getColor(this,R.color.red_index));
-                }
-                if(bfEntity.getHDLCHOL()<1.69){
-                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
-                }else if(bfEntity.getHDLCHOL()>=1.69&&bfEntity.getHDLCHOL()<=2.25){
-                    colorList.add(ContextCompat.getColor(this,R.color.orange_index));
-                }else if(bfEntity.getHDLCHOL()>2.25){
-                    colorList.add(ContextCompat.getColor(this,R.color.red_index));
-                }
-                if(bfEntity.getTRIG()>0.91){
-                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
-                }else {
-                    colorList.add(ContextCompat.getColor(this,R.color.orange_index));
-                }
-                if(bfEntity.getCALCLDL()<3.13){
-                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
-                }else if(bfEntity.getCALCLDL()>=3.13&&bfEntity.getCALCLDL()<=3.59){
-                    colorList.add(ContextCompat.getColor(this,R.color.orange_index));
-                }else if(bfEntity.getCALCLDL()>3.59){
-                    colorList.add(ContextCompat.getColor(this,R.color.red_index));
-                }
-                if(bfEntity.getTC_HDL()<5.0){
-                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
-                }else {
-                    colorList.add(ContextCompat.getColor(this,R.color.red_index));
-                }
+//                if(bfEntity.getCHOL()<5.20){
+//                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
+//                }else if(bfEntity.getCHOL()>=5.20&&bfEntity.getCHOL()<=5.66){
+//                    colorList.add(ContextCompat.getColor(this,R.color.orange_index));
+//                }else if(bfEntity.getCHOL()>5.66){
+//                    colorList.add(ContextCompat.getColor(this,R.color.red_index));
+//                }
+//                if(bfEntity.getHDLCHOL()<1.69){
+//                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
+//                }else if(bfEntity.getHDLCHOL()>=1.69&&bfEntity.getHDLCHOL()<=2.25){
+//                    colorList.add(ContextCompat.getColor(this,R.color.orange_index));
+//                }else if(bfEntity.getHDLCHOL()>2.25){
+//                    colorList.add(ContextCompat.getColor(this,R.color.red_index));
+//                }
+//                if(bfEntity.getTRIG()>0.91){
+//                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
+//                }else {
+//                    colorList.add(ContextCompat.getColor(this,R.color.orange_index));
+//                }
+//                if(bfEntity.getCALCLDL()<3.13){
+//                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
+//                }else if(bfEntity.getCALCLDL()>=3.13&&bfEntity.getCALCLDL()<=3.59){
+//                    colorList.add(ContextCompat.getColor(this,R.color.orange_index));
+//                }else if(bfEntity.getCALCLDL()>3.59){
+//                    colorList.add(ContextCompat.getColor(this,R.color.red_index));
+//                }
+//                if(bfEntity.getTC_HDL()<5.0){
+//                    colorList.add(ContextCompat.getColor(this,R.color.green_index));
+//                }else {
+//                    colorList.add(ContextCompat.getColor(this,R.color.red_index));
+//                }
                 for (int i = 0; i < list.size(); i++) {
                     LinearLayout sub = (LinearLayout) inflater.inflate(R.layout.item_bloodfat_list, null);
                     TextView tvName = sub.findViewById(R.id.tv_item_name);
@@ -115,7 +116,7 @@ public class RecordDetailsActivity extends BaseActivity {
                         tvIndexR.setVisibility(View.GONE);
                     tvIndexR.setText(list.get(i).getIndex_red());
                     llContent.addView(sub);
-                    tvIndex.setTextColor(colorList.get(i));
+//                    tvIndex.setTextColor(colorList.get(i));
                 }
                 break;
             case 1:

@@ -32,7 +32,6 @@ public class HomeActivity extends BaseFramentActivity {
 
     @Override
     protected void createObject() {
-
     }
 
     @Override

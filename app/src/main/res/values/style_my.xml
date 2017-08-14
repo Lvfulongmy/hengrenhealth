@@ -34,14 +34,14 @@
     </style>
 
     <style name="home_btn_ll">
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:padding">5dp</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:background">@drawable/white_bg</item>
-    </style>
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:padding">5dp</item>
+    <item name="android:orientation">vertical</item>
+    <item name="android:layout_margin">2dp</item>
+    <item name="android:background">@drawable/white_bg</item>
+</style>
 
     <style name="home_btn_img">
         <item name="android:layout_weight">4</item>

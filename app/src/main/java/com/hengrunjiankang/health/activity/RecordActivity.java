@@ -264,20 +264,30 @@ public class RecordActivity extends BaseFramentActivity {
         rgChangeScope.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                Calendar nowCl = Calendar.getInstance();
+                nowCl.setTimeInMillis(System.currentTimeMillis());
+                nowCl.set(Calendar.HOUR_OF_DAY, 0);
+                nowCl.set(Calendar.MINUTE, 0);
+                nowCl.set(Calendar.SECOND, 0);
+                nowCl.set(Calendar.MILLISECOND, 0);
+                nowtime = nowCl.getTimeInMillis();
                 switch (i) {
                     case R.id.rb_record_day:
                         CellFragment.mode = MyView.DAY;
                         break;
                     case R.id.rb_record_week:
                         CellFragment.mode = MyView.WEEK;
+                        nowtime=getStartTime(nowtime, CellFragment.mode);
                         break;
                     case R.id.rb_record_mouth:
                         CellFragment.mode = MyView.MONTH;
+                        nowtime=getStartTime(nowtime, CellFragment.mode);
                         break;
                 }
+
                 setStratTime(nowtime);
                 setEndTime(getEndTime(nowtime, CellFragment.mode));
-               splashCell();
+                splashCell();
             }
         });
 
@@ -436,7 +446,7 @@ public class RecordActivity extends BaseFramentActivity {
                 llBottomView.setVisibility(View.INVISIBLE);
                 llRecordList.setVisibility(View.VISIBLE);
                 llBloodPushIndexView.setVisibility(View.GONE);
-                url=UrlObject.QUREYECG+urlParam;
+                url= UrlObject.QUREYECG+urlParam;
                 getListData(url,pageIndex);
                 getListByPageUrl=url;
                 break;
@@ -444,7 +454,7 @@ public class RecordActivity extends BaseFramentActivity {
                 llBottomView.setVisibility(View.INVISIBLE);
                 llRecordList.setVisibility(View.VISIBLE);
                 llBloodPushIndexView.setVisibility(View.GONE);
-                url=UrlObject.QUERYUR+urlParam;
+                url= UrlObject.QUERYUR+urlParam;
                 getListData(url,pageIndex);
                 getListByPageUrl=url;
                 break;
@@ -452,7 +462,7 @@ public class RecordActivity extends BaseFramentActivity {
                 llBottomView.setVisibility(View.INVISIBLE);
                 llRecordList.setVisibility(View.VISIBLE);
                 llBloodPushIndexView.setVisibility(View.GONE);
-                url=UrlObject.QUERYBLOODFAT+urlParam;
+                url= UrlObject.QUERYBLOODFAT+urlParam;
                 getListData(url,pageIndex);
                 getListByPageUrl=url;
                 break;
@@ -534,7 +544,7 @@ public class RecordActivity extends BaseFramentActivity {
 
             @Override
             public void requestAbnormal(int code) {
-                Toast.makeText(RecordActivity.this,R.string.net_error+code,Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecordActivity.this, R.string.net_error+code,Toast.LENGTH_SHORT).show();
                 dismissPDialog();
                 lvRecordList.onRefreshComplete();
             }
@@ -615,7 +625,7 @@ public class RecordActivity extends BaseFramentActivity {
             intent.setClass(RecordActivity.this,EcgDetailsActivity.class);
             startActivity(intent);
         }
-        overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
     }
 
     public static int nowpos = 10000;
@@ -650,7 +660,7 @@ public class RecordActivity extends BaseFramentActivity {
                 break;
             case R.id.title_back:
                 finish();
-                overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_to_right);
+                overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
                 break;
         }
     }

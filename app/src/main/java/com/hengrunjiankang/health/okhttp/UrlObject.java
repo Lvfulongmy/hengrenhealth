@@ -5,8 +5,8 @@ package com.hengrunjiankang.health.okhttp;
  */
 
 public class UrlObject {
-//   public static final String BASEURL = "http://192.168.1.113:9000";
-    public static final String BASEURL = "http://www.hengzhankj.com/";
+   public static final String BASEURL = "http://192.168.1.113:9003";
+//    public static final String BASEURL = "http://www.hengzhankj.com";
     public static final String LOGINURL = BASEURL + "/api/Account/Login";
     public static final String QUERYFATDATAURL = BASEURL + "/api/DeviceData/QueryFatDataV1?IdentityUserIdAssign=UserId";//体脂
     public static final String QUERYBGDATA = BASEURL + "/api/DeviceData/QueryBGDataV1?IdentityUserIdAssign=UserId";//血糖
@@ -27,4 +27,5 @@ public class UrlObject {
     public static final String USERHELPURL=BASEURL+"/content/mobile/helper.html";
     public static final String FEEDBACKURL=BASEURL+"/api/Account/SaveOpinion";
     public static final String QUITURL=BASEURL+"/api/Account/LogOff";
+    public static final String QUERYDOCTORINFO=BASEURL+"/api/Health/QueryExpert";
 }

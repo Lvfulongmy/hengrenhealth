@@ -1,8 +1,10 @@
 package com.hengrunjiankang.health.util;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -10,6 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.hengrunjiankang.health.R;
+import com.hengrunjiankang.health.activity.LoginActivity;
 
 import java.util.HashMap;
 
@@ -42,6 +45,11 @@ public class CommonUtils {
         Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix,
                 true);
         return resizedBitmap;
+    }
+    public static void gotoLogin(Context mContext){
+        mContext.startActivity(new Intent(mContext, LoginActivity.class));
+        ((Activity)mContext).finish();
+        ((Activity) mContext).overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);
     }
     public static AlertDialog getProgressDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.AlertDialog);
@@ -168,5 +176,10 @@ public class CommonUtils {
         builder.setCancelable(false);
         builder.create().show();
     }
-
+    public static  boolean isGifUrl(String url){
+        if(url.endsWith(".gif")||url.endsWith(".GIF")){
+            return true;
+        }
+        return false;
+    }
 }

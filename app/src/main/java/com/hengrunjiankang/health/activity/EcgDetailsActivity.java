@@ -15,25 +15,17 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.hengrunjiankang.health.R;
-import com.hengrunjiankang.health.applaction.MyApplacation;
-import com.hengrunjiankang.health.entity.BloodFatEntity;
+import com.hengrunjiankang.health.applaction.MyApplication;
 import com.hengrunjiankang.health.entity.EcgEntity;
 import com.hengrunjiankang.health.entity.EcgIndexEntity;
-import com.hengrunjiankang.health.entity.UREntity;
-import com.hengrunjiankang.health.entity.URIndexEntity;
 import com.hengrunjiankang.health.okhttp.CommonHttp;
 import com.hengrunjiankang.health.okhttp.CommonHttpCallback;
 import com.hengrunjiankang.health.okhttp.UrlObject;
 import com.hengrunjiankang.health.util.CommonUtils;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 
@@ -153,7 +145,7 @@ public class EcgDetailsActivity extends BaseActivity {
 
 
     private  void getPic(String url){
-        glide.load(new GlideUrl(url,new LazyHeaders.Builder().addHeader("Cookie", MyApplacation.cookie).build())).into(pic);
+        glide.load(new GlideUrl(url,new LazyHeaders.Builder().addHeader("Cookie", MyApplication.cookie).build())).into(pic);
     }
 
     @Override
