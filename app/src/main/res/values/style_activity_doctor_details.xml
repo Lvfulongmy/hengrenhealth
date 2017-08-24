@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="doctor_details_bar_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="doctor_details_bar_img">
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="doctor_details_bar_txt">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/gray3</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="doctor_details_bar_right">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:src">@mipmap/arrow_down</item>
+        <item name="android:layout_width">14dp</item>
+        <item name="android:layout_height">8dp</item>
+        <item name="android:layout_marginRight">18dp</item>
+    </style>
+
+    <style name="doctor_details_img">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">110dp</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+</resources>

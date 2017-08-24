@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.hengrunjiankang.health.R;
 import com.hengrunjiankang.health.activity.BaseActivity;
 import com.hengrunjiankang.health.activity.BaseBegPermissionActivity;
+import com.hengrunjiankang.health.util.PhotoUtil;
 
 
 public class SelectPhotoActivity extends BaseBegPermissionActivity {
@@ -31,7 +32,7 @@ public class SelectPhotoActivity extends BaseBegPermissionActivity {
         // TODO Auto-generated method stub
         switch (v.getId()) {
             case R.id.title_back:
-//			setResult(BaseFatieActivity.REPICKCANCEL);
+			setResult(PhotoUtil.REPICKCANCEL);
                 this.finish();
                 break;
             case R.id.title_ac_folder:
@@ -41,7 +42,7 @@ public class SelectPhotoActivity extends BaseBegPermissionActivity {
                 break;
             case R.id.title_ac_finish:
                 v.setClickable(false);
-//			setResult(BaseFatieActivity.REPICKFINISH);
+			    setResult(PhotoUtil.REPICKFINISH);
                 this.finish();
                 break;
 
@@ -137,7 +138,7 @@ public class SelectPhotoActivity extends BaseBegPermissionActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO Auto-generated method stub
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-//			setResult(BaseFatieActivity.REPICKCANCEL);
+			setResult(PhotoUtil.REPICKCANCEL);
             finish();
             return false;
         }

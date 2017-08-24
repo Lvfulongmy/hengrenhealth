@@ -23,6 +23,7 @@ public class MyFragment extends BaseFragment {
     private LinearLayout llAccount;
     private LinearLayout llResetPwd;
     private LinearLayout llHelp;
+    private LinearLayout llFamily,llBespockRecord;
     private TextView tvQuit;
 
     @Override
@@ -35,7 +36,10 @@ public class MyFragment extends BaseFragment {
         llAccount = (LinearLayout) view.findViewById(R.id.ll_my_account_info);
         llResetPwd = (LinearLayout) view.findViewById(R.id.ll_my_account_reset_pwd);
         llHelp = (LinearLayout) view.findViewById(R.id.ll_my_account_help);
+        llBespockRecord = (LinearLayout) view.findViewById(R.id.ll_my_account_bespock_record);
+        llFamily = (LinearLayout) view.findViewById(R.id.ll_my_account_family);
         tvQuit = (TextView) view.findViewById(R.id.tv_my_quit);
+
     }
 
     @Override
@@ -48,6 +52,8 @@ public class MyFragment extends BaseFragment {
         llAccount.setOnClickListener(this);
         llResetPwd.setOnClickListener(this);
         llHelp.setOnClickListener(this);
+        llFamily.setOnClickListener(this);
+        llBespockRecord.setOnClickListener(this);
         tvQuit.setOnClickListener(this);
     }
 
@@ -75,6 +81,10 @@ public class MyFragment extends BaseFragment {
             case R.id.tv_my_quit:
                 startActivity(new Intent(mActivity, LoginActivity.class));
                 mActivity.finish();
+                break;
+            case R.id.ll_my_account_bespock_record:
+                break;
+            case R.id.ll_my_account_family:
                 break;
 
         }

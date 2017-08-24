@@ -35,8 +35,8 @@ public class CircularImage extends MaskedImage {
 		localPaint.setColor(Color.BLUE);
 		float f1 = getWidth();
 		float f2 = getHeight();
-//		RectF localRectF = new RectF(0.0F, 0.0F, f1, f2);
-		RectF localRectF = new RectF(0,0, f1, f1);
+		RectF localRectF = new RectF(1F, 1F, f1-1, f2-1);
+//		RectF localRectF = new RectF(0,0, f1, f1);
 		localCanvas.drawOval(localRectF, localPaint);
 		return localBitmap;
 	}

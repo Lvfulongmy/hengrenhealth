@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.MediaStore;
 import android.provider.MediaStore.Audio.Albums;
 import android.provider.MediaStore.Images.Media;
 import android.provider.MediaStore.Images.Thumbnails;
@@ -134,7 +135,8 @@ public class AlbumHelper {
 
 	boolean hasBuildImagesBucketList = false;
 	private ArrayList<ImageItem> allImageList=new ArrayList<ImageItem>();
-
+	private String selectCase= MediaStore.Images.Media.MIME_TYPE + "=? or "  + MediaStore.Images.Media.MIME_TYPE + "=?";
+	 private String [] selectParams=new String[] { "image/jpeg", "image/png" };
 	void buildImagesBucketList() {
 		long startTime = System.currentTimeMillis();
 
@@ -143,7 +145,7 @@ public class AlbumHelper {
 		String columns[] = new String[] { Media._ID, Media.BUCKET_ID,
 				Media.PICASA_ID, Media.DATA, Media.DISPLAY_NAME, Media.TITLE,
 				Media.SIZE, Media.BUCKET_DISPLAY_NAME };
-		Cursor cur = cr.query(Media.EXTERNAL_CONTENT_URI, columns, null, null,
+		Cursor cur = cr.query(Media.EXTERNAL_CONTENT_URI, columns, selectCase, selectParams,
 				Media.DATE_TAKEN+ " DESC");
 		if (cur.moveToFirst()) {
 			int photoIDIndex = cur.getColumnIndexOrThrow(Media._ID);

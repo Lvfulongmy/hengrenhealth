@@ -266,21 +266,33 @@ public class RecordActivity extends BaseFramentActivity {
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
                 Calendar nowCl = Calendar.getInstance();
                 nowCl.setTimeInMillis(System.currentTimeMillis());
-                nowCl.set(Calendar.HOUR_OF_DAY, 0);
-                nowCl.set(Calendar.MINUTE, 0);
-                nowCl.set(Calendar.SECOND, 0);
-                nowCl.set(Calendar.MILLISECOND, 0);
-                nowtime = nowCl.getTimeInMillis();
+
                 switch (i) {
                     case R.id.rb_record_day:
+
                         CellFragment.mode = MyView.DAY;
+                        nowCl.set(Calendar.HOUR_OF_DAY, 0);
+                        nowCl.set(Calendar.MINUTE, 0);
+                        nowCl.set(Calendar.SECOND, 0);
+                        nowCl.set(Calendar.MILLISECOND, 0);
+                        nowtime = nowCl.getTimeInMillis();
                         break;
                     case R.id.rb_record_week:
                         CellFragment.mode = MyView.WEEK;
+                        nowCl.set(Calendar.HOUR_OF_DAY, 23);
+                        nowCl.set(Calendar.MINUTE, 59);
+                        nowCl.set(Calendar.SECOND, 59);
+                        nowCl.set(Calendar.MILLISECOND,999);
+                        nowtime = nowCl.getTimeInMillis();
                         nowtime=getStartTime(nowtime, CellFragment.mode);
                         break;
                     case R.id.rb_record_mouth:
+                        nowCl.set(Calendar.HOUR_OF_DAY, 23);
+                        nowCl.set(Calendar.MINUTE, 59);
+                        nowCl.set(Calendar.SECOND, 59);
+                        nowCl.set(Calendar.MILLISECOND, 999);
                         CellFragment.mode = MyView.MONTH;
+                        nowtime = nowCl.getTimeInMillis();
                         nowtime=getStartTime(nowtime, CellFragment.mode);
                         break;
                 }

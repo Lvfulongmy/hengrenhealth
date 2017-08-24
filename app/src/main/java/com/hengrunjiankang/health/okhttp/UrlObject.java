@@ -1,5 +1,7 @@
 package com.hengrunjiankang.health.okhttp;
 
+import com.hengrunjiankang.health.photo.SelectPhotoActivity;
+
 /**
  * Created by Administrator on 2017/7/12.
  */
@@ -28,4 +30,11 @@ public class UrlObject {
     public static final String FEEDBACKURL=BASEURL+"/api/Account/SaveOpinion";
     public static final String QUITURL=BASEURL+"/api/Account/LogOff";
     public static final String QUERYDOCTORINFO=BASEURL+"/api/Health/QueryExpert";
+    public static final String UPLOADFILE=BASEURL+"/api/System/UploadFile";
+    public static final String SAVAHEALTHRECORD=BASEURL+"/api/Health/SaveHealthRecord";
+    public static final String QUERYHEALTHRECORD= BASEURL+"/api/Health/QueryHealthRecord?IdentityUserIdAssign=UserId";
+    public static final String DELETEHEALTHRECORD=BASEURL+"/api/Health/DeleteHealthRecord";
+    public static final String  QUERYEXPERTEVALUATETAG=BASEURL+"/api/Health/QueryExpertEvaluateTag";
+    public static final String  QUERYRESERVATIONEXPERT=BASEURL+"/api/Health/QueryReservationExpert";
+    public static final String  SAVERESERVATIONEXPERT=BASEURL+"/api/Health/SaveReservationExpert";
 }

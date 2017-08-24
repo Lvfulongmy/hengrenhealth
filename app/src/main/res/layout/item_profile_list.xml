@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hengrunjiankang.health.widget.MyHorizontalScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll">
+    <RelativeLayout  android:layout_width="match_parent"
+                   android:layout_height="@dimen/bar_high"
+                   android:orientation="horizontal" >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/ll_1"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="档案编号:"
+            android:textSize="@dimen/txt_normal"/>
+        <TextView
+            android:id="@+id/tv_item_num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:text="8888888888888888"
+            android:textSize="@dimen/txt_normal"
+            />
+
+        <TextView
+            android:id="@+id/tv_item_tosee"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:background="@drawable/orange_stroke_round"
+            android:gravity="center"
+            android:text="查看"
+            android:textColor="@color/orange2"
+            android:textSize="@dimen/txt_normal"
+            />
+
+    </LinearLayout>
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="删除"
+            android:layout_toRightOf="@+id/ll_1"
+            android:gravity="center"
+            android:id="@+id/tv_item_delete"
+           />
+    </RelativeLayout>
+</com.hengrunjiankang.health.widget.MyHorizontalScrollView>

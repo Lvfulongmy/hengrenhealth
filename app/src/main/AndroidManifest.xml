@@ -106,6 +106,25 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.AddHealthProfileActivity"
                   android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".activity.ProfileListActivity"
+                  android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".activity.ProfileActivity"
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.AddDrugRecordActivity"
+                  android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".activity.DoctorDetailsActivity"
+                  android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activity.BespockDoctorActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+        </activity>
+        <activity android:name=".activity.DoctorListActivity"
+                  android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>

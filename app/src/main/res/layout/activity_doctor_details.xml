@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bgcolor"
+              android:clipToPadding="true"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+              xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    >
+
+    <include layout="@layout/layout_title_text"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="550"
+        android:orientation="vertical">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+
+            android:id="@+id/lv_judge_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            ptr:ptrDrawable="@mipmap/img_loading"
+            android:scrollbars="none"
+            >
+
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+
+        <TextView
+            android:id="@+id/tv_doctor_bespock"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_bg_orange"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="预约专家"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_big"/>
+    </LinearLayout>
+
+</LinearLayout>

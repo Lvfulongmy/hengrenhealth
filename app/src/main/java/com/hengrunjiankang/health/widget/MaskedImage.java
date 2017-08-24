@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.graphics.Xfermode;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatImageView;
@@ -60,8 +61,10 @@ public abstract class MaskedImage extends AppCompatImageView {
 			if ((this.mask == null) || (this.mask.isRecycled())) {
 				this.mask = createMask();
 			}
+			RectF localRectF = new RectF(0,0, f1, f1);
 			paramCanvas.drawBitmap(this.mask, 0.0F, 0.0F, this.paint);
 			paramCanvas.restoreToCount(i);
+
 			return;
 		} catch (Exception localException) {
 			StringBuilder localStringBuilder = new StringBuilder()

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.hengrunjiankang.health.R;
 import com.hengrunjiankang.health.adapter.MyBaseAdapter;
+import com.hengrunjiankang.health.util.PhotoUtil;
 
 /**
  * 
@@ -100,17 +101,16 @@ public class PhotoGridAdapter extends MyBaseAdapter<ImageItem> implements
 			// Toast.LENGTH_LONG).show();
 
 			if (toggleButton.isChecked()) {
-				if (Bimp.tempSelectFile.size() < 10) {
+				if (PhotoUtil.selectFile.size() < 3) {
 					File file = new File(data.get(position).getImagePath());
-					Bimp.tempSelectFile.put(SelectPhotoActivity.foldernum+position,file);
+					PhotoUtil.selectFile.put(SelectPhotoActivity.foldernum+position,file);
 				} else {
 					toggleButton.setChecked(false);
-					Toast.makeText(context, "最多选择十张", Toast.LENGTH_SHORT)
+					Toast.makeText(context, "最多选择三张", Toast.LENGTH_SHORT)
 							.show();
 				}
 			} else {
-				Bimp.tempSelectFile
-						.remove(SelectPhotoActivity.foldernum + position);
+					PhotoUtil.selectFile.remove(SelectPhotoActivity.foldernum + position);
 			}
 			data.get(position).isSelected = toggleButton.isChecked();
 

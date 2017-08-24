@@ -94,7 +94,6 @@ public class CommonHttp {
                     RequestBody fileBody = RequestBody.create(type, entry.getValue());
                     multipartBuilder.addFormDataPart(entry.getKey(), entry.getValue().getName(), fileBody);
                 }
-                ;
                 request = requestBuiler.url(url).post(multipartBuilder.build()).build();
                 break;
         }
@@ -103,7 +102,7 @@ public class CommonHttp {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                callback.requestAbnormal(-1);
+                mHandler.sendEmptyMessage(-1);
             }
 
             @Override
@@ -122,24 +121,28 @@ public class CommonHttp {
 
         @Override
         public boolean handleMessage(Message message) {
-            Response response=(Response) message.obj;
-            try {
-                if (response.code() == 200||response.code()==204) {
-                        int code=  getCode(xresponsejson);
-                    if(code==401) {
-                        CommonUtils.gotoLogin(mContext);
-                    }else{
-                        callback.requestSeccess(response.body().string());
-                    }
-                } else if (response.code() == 500) {
-                    Toast.makeText(mContext,getMsg(response.body().string()),Toast.LENGTH_SHORT).show();
-                    callback.requestFail(getMsg(response.body().string()));
-                } else {
-                    callback.requestAbnormal(response.code());
-                }
-            }catch (IOException e){
-                callback.requestAbnormal(-2);
+            if(message.what==-1){
+                callback.requestAbnormal(-1);
+             return false;
             }
+                Response response = (Response) message.obj;
+                try {
+                    if (response.code() == 200 || response.code() == 204) {
+                        int code = getCode(xresponsejson);
+                        if (code == 401) {
+                            CommonUtils.gotoLogin(mContext);
+                        } else {
+                            callback.requestSeccess(response.body().string());
+                        }
+                    } else if (response.code() == 500) {
+                        Toast.makeText(mContext, getMsg(response.body().string()), Toast.LENGTH_SHORT).show();
+                        callback.requestFail(getMsg(response.body().string()));
+                    } else {
+                        callback.requestAbnormal(response.code());
+                    }
+                } catch (IOException e) {
+                    callback.requestAbnormal(-2);
+                }
             return false;
         }
     });

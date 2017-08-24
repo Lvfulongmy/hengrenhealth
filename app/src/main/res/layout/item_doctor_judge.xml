@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+           xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/white"
+    >
+
+
+    <com.hengrunjiankang.health.widget.RatingBar
+
+        android:id="@+id/ratingbar_item_judge"
+        app:starCount="5"
+        app:starEmpty="@mipmap/start_uncheck"
+        app:starFill="@mipmap/start_check"
+        app:starHalf="@mipmap/start_check"
+        app:starImageSize="10dp"
+        app:starPadding="3dp"
+        app:starStep="1"
+        app:stepSize="Full"
+        app:clickable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/txt_small"
+        android:textColor="@color/gray2"
+        android:id="@+id/tv_item_name"
+        android:text=""
+        android:layout_below="@+id/ratingbar_item_judge"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/txt_normal"
+        android:textColor="@color/gray3"
+        android:id="@+id/tv_item_judge"
+        android:text="name"
+        android:layout_below="@+id/tv_item_name"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/txt_small"
+        android:textColor="@color/gray2"
+        android:id="@+id/tv_item_time"
+        android:text="name"
+        android:layout_below="@+id/tv_item_judge"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ll_item_dialog"
+        android:layout_below="@+id/tv_item_time">
+
+    </LinearLayout>
+    <View  android:layout_width="match_parent"
+           android:layout_height="@dimen/line_width"
+        android:background="@color/gray_line"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/ll_item_dialog"/>
+
+</RelativeLayout>

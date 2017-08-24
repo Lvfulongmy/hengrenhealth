@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bgcolor"
+              android:clipToPadding="true"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_title_text"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="@integer/page_weight"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="健康档案选择（可多选，可滑动选择）"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/lv_bespock_profile"
+            android:background="@color/white">
+
+        </ListView>
+
+        <LinearLayout
+            style="@style/editbar_ll"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                style="@style/editbar_txt2"
+                android:text="出生日期"
+                />
+
+            <TextView
+                android:id="@+id/tv_bespock_birthday"
+                style="@style/editbar_et2"
+                android:drawableRight="@mipmap/icon_date"
+                android:paddingRight="20dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/editbar_ll"
+            android:layout_marginTop="5dp"
+            >
+
+            <TextView
+                style="@style/editbar_txt2"
+                android:text="最晚回复日期"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_bespock_date"
+                style="@style/editbar_et2"
+                android:drawableRight="@mipmap/icon_date"
+                android:paddingRight="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/editbar_ll"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                style="@style/editbar_txt"
+                android:text="性别"
+
+                />
+
+            <RadioGroup
+                android:id="@+id/rg_bespock_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginRight="15dp">
+
+                <RadioButton
+                    android:id="@+id/rb_bespock_male"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/rb_buttonicon"
+                    android:button="@null"
+                    />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/icon_male"
+                    android:layout_marginLeft="3dp"/>
+
+                <RadioButton
+                    android:id="@+id/rb_bespock_female"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:button="@null"
+                    android:background="@drawable/rb_buttonicon"
+                    android:layout_marginLeft="20dp"
+                    />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/icon_female"
+                    android:layout_marginLeft="3dp"/>
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:padding="5dp"
+            android:textSize="@dimen/txt_normal"
+            android:hint="请描述您的其它症状..."
+            android:gravity="top"
+            android:background="@drawable/dialog_bg"
+            android:id="@+id/et_bespock_remark"
+            android:maxLength="300"
+            android:paddingBottom="20dp"
+            android:layout_margin="20dp"
+
+            />
+            <TextView
+                android:id="@+id/tv_bespock_txtnums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"
+                android:text="0/300"
+                android:gravity="right"
+                android:textColor="@color/gray3"
+                android:padding="5dp"
+                android:layout_alignBottom="@+id/et_bespock_remark"
+                android:layout_alignRight="@+id/et_bespock_remark"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_bespock_submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_bg_orange"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="预约"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_big"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -76,6 +77,12 @@ public class CommonUtils {
      */
     public static SharedPreferences getUserShare(Context context) {
         return context.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+    }
+    public static void saveUserId(Context context,String userid){
+        SharedPreferences sharedPreferences=getUserShare(context);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("userid",userid);
+        editor.commit();
     }
 
     public static void saveUserInfo(Context context,String username,String pwd){
@@ -181,5 +188,14 @@ public class CommonUtils {
             return true;
         }
         return false;
+    }
+
+    public static boolean hasSdcard() {
+        if (Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

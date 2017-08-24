@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.hengrunjiankang.health.R;
+import com.hengrunjiankang.health.applaction.MyApplication;
 import com.hengrunjiankang.health.fragment.HomeFragment;
 import com.hengrunjiankang.health.fragment.MyFragment;
 import com.hengrunjiankang.health.fragment.SetFragment;
@@ -32,6 +33,8 @@ public class HomeActivity extends BaseFramentActivity {
 
     @Override
     protected void createObject() {
+        getScreenParam();
+        MyApplication.ScreenWidth=screenWidth;
     }
 
     @Override

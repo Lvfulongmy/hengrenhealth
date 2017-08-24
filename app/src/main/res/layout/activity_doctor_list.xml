@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:clipToPadding="true"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+              xmlns:ptr="http://schemas.android.com/apk/res-auto">
+
+    <include layout="@layout/layout_title_text"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="@integer/page_weight"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/rg_home_sort"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bar_high"
+            android:layout_marginBottom="10dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_home_1"
+                style="@style/new_home_rb"
+                android:text="评价最优"
+
+                />
+
+            <RadioButton
+                android:id="@+id/rb_home_2"
+                style="@style/new_home_rb"
+                android:text="价格最优"
+                />
+
+            <RadioButton
+                android:id="@+id/rb_home_3"
+                style="@style/new_home_rb"
+                android:text="资质最高"
+                />
+        </RadioGroup>
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+
+            android:id="@+id/lv_doctor_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            ptr:ptrDrawable="@mipmap/img_loading"
+            >
+
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+    </LinearLayout>
+</LinearLayout>

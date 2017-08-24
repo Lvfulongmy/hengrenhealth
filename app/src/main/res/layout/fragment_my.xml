@@ -10,7 +10,7 @@
 
         <ImageView
             style="@style/nvbar_img"
-            android:src="@mipmap/icon_my_acinfo"
+            android:src="@mipmap/mycenter_1"
             />
 
         <TextView
@@ -31,7 +31,7 @@
 
         <ImageView
             style="@style/nvbar_img"
-            android:src="@mipmap/icon_my_reset_pwd"
+            android:src="@mipmap/mycenter_2"
             />
 
         <TextView
@@ -51,7 +51,7 @@
 
         <ImageView
             style="@style/nvbar_img"
-            android:src="@mipmap/icon_my_help"
+            android:src="@mipmap/mycenter_3"
             />
 
         <TextView
@@ -63,6 +63,47 @@
             />
     </LinearLayout>
     <include layout="@layout/layout_line"/>
+    <include layout="@layout/layout_line_mt"/>
+
+    <LinearLayout
+        android:id="@+id/ll_my_account_bespock_record"
+        style="@style/nvbar_ll">
+
+        <ImageView
+            style="@style/nvbar_img"
+            android:src="@mipmap/mycenter_4"
+            />
+
+        <TextView
+            style="@style/nvbar_txt"
+            android:text="预约记录"/>
+
+        <ImageView
+            style="@style/nvbar_right"
+            />
+    </LinearLayout>
+    <include layout="@layout/layout_line"/>
+    <include layout="@layout/layout_line_mt"/>
+
+    <LinearLayout
+        android:id="@+id/ll_my_account_family"
+        style="@style/nvbar_ll">
+
+        <ImageView
+            style="@style/nvbar_img"
+            android:src="@mipmap/mycenter_5"
+            />
+
+        <TextView
+            style="@style/nvbar_txt"
+            android:text="我的家人"/>
+
+        <ImageView
+            style="@style/nvbar_right"
+            />
+    </LinearLayout>
+    <include layout="@layout/layout_line"/>
+
 
     <TextView
         android:id="@+id/tv_my_quit"

@@ -5,14 +5,20 @@ import android.support.annotation.IdRes;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.hengrunjiankang.health.R;
+import com.hengrunjiankang.health.activity.AddDrugRecordActivity;
 import com.hengrunjiankang.health.activity.AddHealthProfileActivity;
+import com.hengrunjiankang.health.activity.DoctorDetailsActivity;
+import com.hengrunjiankang.health.activity.DoctorListActivity;
+import com.hengrunjiankang.health.activity.ProfileListActivity;
 import com.hengrunjiankang.health.activity.RecordActivity;
+import com.hengrunjiankang.health.entity.AddDrugRecordEntity;
 import com.hengrunjiankang.health.entity.DoctorEntity;
 import com.hengrunjiankang.health.adapter.HomeListAdapter;
 import com.hengrunjiankang.health.adapter.ImagePagerAdapter;
@@ -92,6 +98,15 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         });
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                Intent intent=new Intent(mActivity,DoctorDetailsActivity.class);
+                intent.putExtra("id",listData.get(pos).getId());
+                startActivity(intent);
+                mActivity.overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);
+            }
+        });
     }
 
     @Override
@@ -139,7 +154,16 @@ public class HomeFragment extends BaseFragment {
                 mActivity.overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);
                 break;
             case R.id.ll_home_2:
-                startActivity(new Intent(mActivity,AddHealthProfileActivity.class));
+                startActivity(new Intent(mActivity,AddDrugRecordActivity.class));
+                mActivity.overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);
+                break;
+            case R.id.ll_home_3:
+                startActivity(new Intent(mActivity,ProfileListActivity.class));
+                mActivity.overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);
+                break;
+            case R.id.tv_home_listmore:
+                Intent intent=new Intent(mActivity,DoctorListActivity.class);
+                startActivity(intent);
                 mActivity.overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_to_left);
                 break;
         }

@@ -1,23 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:clipToPadding="true">
-    <include layout="@layout/layout_title_text"
+              android:clipToPadding="true"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+              android:background="@color/bgcolor">
+
+    <include layout="@layout/layout_title_action2"
         />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="@integer/page_weight">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ll_checkgroup"
             android:orientation="vertical"
-            android:background="@color/white">
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="如果需要上传图片，请在wifi环境下操作"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_profile_yyjc"
+                    style="@style/add_profile_subtitle"
+                    android:text="医院检查"
+                    android:gravity="center_vertical"
+                    />
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <cn.bingoogolapple.badgeview.BGABadgeImageView
+                        android:id="@+id/iv_profile_yyjc1"
+                        style="@style/add_profile_img"
+                        />
+
+                    <cn.bingoogolapple.badgeview.BGABadgeImageView
+                        android:id="@+id/iv_profile_yyjc2"
+                        style="@style/add_profile_img"
+
+                        />
+
+                    <cn.bingoogolapple.badgeview.BGABadgeImageView
+                        android:id="@+id/iv_profile_yyjc3"
+                        style="@style/add_profile_img"
+
+                        />
+                    <ImageView
+                        style="@style/add_profile_img"
+                        android:id="@+id/iv_profile_yyjc_add"
+                        android:src="@mipmap/add_photo_big"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+                <include layout="@layout/layout_line"/>
+                <TextView
+                    android:id="@+id/tv_profile_bl"
+                    style="@style/add_profile_subtitle"
+                    android:text="病例"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <cn.bingoogolapple.badgeview.BGABadgeImageView
+                        android:id="@+id/iv_profile_bl1"
+                        style="@style/add_profile_img"
+                        />
+
+                    <cn.bingoogolapple.badgeview.BGABadgeImageView
+                        android:id="@+id/iv_profile_bl2"
+                        style="@style/add_profile_img"
+
+                        />
+
+                    <cn.bingoogolapple.badgeview.BGABadgeImageView
+                        android:id="@+id/iv_profile_bl3"
+                        style="@style/add_profile_img"
+
+                        />
+                    <ImageView
+                        style="@style/add_profile_img"
+                        android:id="@+id/iv_profile_bl_add"
+                        android:src="@mipmap/add_photo_big"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+                <include layout="@layout/layout_line"/>
+                <TextView
+                    android:id="@+id/tv_profile_yyfa"
+                    style="@style/add_profile_subtitle"
+                    android:text="用药方案"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <cn.bingoogolapple.badgeview.BGABadgeImageView
+                        android:id="@+id/iv_profile_yyfa1"
+                        style="@style/add_profile_img"
+                        />
+
+                    <cn.bingoogolapple.badgeview.BGABadgeImageView
+                        android:id="@+id/iv_profile_yyfa2"
+                        style="@style/add_profile_img"
+
+                        />
+
+                    <cn.bingoogolapple.badgeview.BGABadgeImageView
+                        android:id="@+id/iv_profile_yyfa3"
+                        style="@style/add_profile_img"
+
+                        />
+                    <ImageView
+                        style="@style/add_profile_img"
+                        android:id="@+id/iv_profile_yyfa_add"
+                        android:src="@mipmap/add_photo_big"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+                <include layout="@layout/layout_line"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_checkgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textSize="12dp"
+                android:textColor="@color/gray3"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:textSize="@dimen/txt_normal"
+                android:hint="请描述您的其它症状..."
+                android:gravity="top"
+                android:background="@color/white"
+                android:id="@+id/et_profile_other"
+                android:maxLength="500"
+                />
+            <TextView
+                android:id="@+id/tv_profile_txtnums"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"
+                android:text="0/500"
+                android:gravity="right"
+                android:textColor="@color/gray3"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:layout_marginBottom="100dp"
+
+                />
         </LinearLayout>
     </ScrollView>
 

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+             android:background="@color/bgcolor">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/black_header_bg">
+
+        <com.hengrunjiankang.health.widget.CircularImage
+            android:id="@+id/iv_doctor_header"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_doctor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/iv_doctor_header"
+            android:text="TextView"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_doctor_duties"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_doctor_name"
+            android:layout_toRightOf="@+id/tv_doctor_name"
+            android:text="TextView"
+            android:textColor="@color/orange2"
+            android:textSize="14dp"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_doctor_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_doctor_header"
+            android:layout_below="@+id/tv_doctor_name"
+            android:text="TextView"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/white"/>
+
+        <!-- TextView
+            android:id="@+id/tv_doctor_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:layout_below="@+id/tv_doctor_unit"
+            android:layout_toRightOf="@+id/iv_doctor_header"
+            android:text="TextView"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="38dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_doctor_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_doctor_type"
+            android:layout_alignBottom="@+id/tv_doctor_type"
+            android:textSize="12dp"
+            android:text="TextView"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/white"
+            /- -->
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_doctor_ysjj"
+        style="@style/doctor_details_bar_ll"
+        >
+
+        <ImageView
+            style="@style/doctor_details_bar_img"
+            android:src="@mipmap/doctor_ysjj"
+            />
+
+        <TextView
+            style="@style/doctor_details_bar_txt"
+            android:text="医生简介"/>
+
+        <ImageView
+            style="@style/doctor_details_bar_right"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_doctor_ysjj"
+        android:background="@drawable/tv_top_line_bg"
+        android:padding="10dp"
+        android:text="fdklsfjldskjf "
+     />
+
+    <LinearLayout
+        android:id="@+id/ll_doctor_scly"
+        style="@style/doctor_details_bar_ll"
+        >
+
+        <ImageView
+            style="@style/doctor_details_bar_img"
+            android:src="@mipmap/doctor_scly"
+            />
+
+        <TextView
+            style="@style/doctor_details_bar_txt"
+            android:text="擅长领域"/>
+
+        <ImageView
+            style="@style/doctor_details_bar_right"
+            />
+    </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_doctor_scly"
+            android:background="@drawable/tv_top_line_bg"
+            android:padding="10dp"
+            />
+
+
+    <LinearLayout
+        android:id="@+id/ll_doctor_yszz"
+        style="@style/doctor_details_bar_ll"
+        >
+
+        <ImageView
+            style="@style/doctor_details_bar_img"
+            android:src="@mipmap/doctor_yszz"
+            />
+
+        <TextView
+            style="@style/doctor_details_bar_txt"
+            android:text="医生资质"/>
+
+        <ImageView
+            style="@style/doctor_details_bar_right"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_top_line_bg">
+        <ImageView
+            android:id="@+id/iv_doctor_1"
+            style="@style/doctor_details_img"
+            />
+
+        <ImageView
+            android:id="@+id/iv_doctor_2"
+            style="@style/doctor_details_img"
+            />
+
+        <ImageView
+            android:id="@+id/iv_doctor_3"
+            style="@style/doctor_details_img"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_doctor_hzpj"
+        style="@style/doctor_details_bar_ll"
+        >
+
+        <ImageView
+            style="@style/doctor_details_bar_img"
+            android:src="@mipmap/doctor_hzpj"
+            />
+
+        <TextView
+            style="@style/doctor_details_bar_txt"
+            android:text="患者评价"/>
+
+    </LinearLayout>
+
+    <com.hengrunjiankang.health.widget.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fl_doctor_taggroup"
+        android:background="@drawable/tv_top_line_bg"
+       >
+
+    </com.hengrunjiankang.health.widget.FlowLayout>
+
+</LinearLayout>
